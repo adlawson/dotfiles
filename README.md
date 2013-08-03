@@ -17,4 +17,3 @@ The installer was shamelessly ripped with the best of intentions from [Mathais B
 
 <!-- Links -->
 [mathaisbynens]: https://github.com/mathiasbynens/dotfiles
-

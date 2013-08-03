@@ -6,4 +6,3 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
           --exclude "README.md" -av --no-perms . ~
     source ~/.bash_profile
 fi
-
