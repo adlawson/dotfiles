@@ -1,0 +1,7 @@
+[core]
+	editor = vim
+[user]
+	name = adlawson
+	email = adlawson@gmail.com
+[color]
+	ui = true
