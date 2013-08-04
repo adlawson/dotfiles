@@ -12,6 +12,8 @@ Bundle 'gmarik/vundle'
 "bundles
 Bundle 'kien/ctrlp.vim'
 Bundle 'tomasr/molokai'
+Bundle 'pangloss/vim-javascript'
+Bundle 'elzr/vim-json'
 
 "reenable filetype hinting
 filetype plugin indent on
