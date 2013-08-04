@@ -9,6 +9,9 @@ call vundle#rc()
 "let Vundle manage itself
 Bundle 'gmarik/vundle'
 
+"fuzzy search
+Bundle 'kien/ctrlp.vim'
+
 "colour schemes
 Bundle 'tomasr/molokai'
 colorscheme molokai
