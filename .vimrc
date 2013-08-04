@@ -9,12 +9,9 @@ call vundle#rc()
 "let Vundle manage itself
 Bundle 'gmarik/vundle'
 
-"fuzzy search
+"bundles
 Bundle 'kien/ctrlp.vim'
-
-"colour schemes
 Bundle 'tomasr/molokai'
-colorscheme molokai
 
 "reenable filetype hinting
 filetype plugin indent on
@@ -44,13 +41,17 @@ set shiftwidth=4       "indents use 4 spaces
 set autoread           "reload files changed outside session
 set wildmenu           "command autocomplete
 set wildmode=longest:full,full "command autocomplete mode
-set list listchars=tab:\ \ ,trail:▓ "display tabs and trailing spaces
 
 "system settings
 set hidden             "remember undo after quit
 set nobackup           "no backup ~ files
 set noswapfile         "no swapfile
 set history=1000       "command history
+
+"colour scheme
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=162 guibg=#DF0087
+autocmd ColorScheme * match ExtraWhitespace /\s\+$/ "highlight trailing whitespace
+colorscheme molokai    "set colour scheme
 
 "persistent undo across sessions
 silent !mkdir ~/.vim/backups > /dev/null 2>&1
