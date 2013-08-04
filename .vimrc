@@ -9,9 +9,10 @@ call vundle#rc()
 "let Vundle manage itself
 Bundle 'gmarik/vundle'
 
-"bundles
+"plugins
 Bundle 'kien/ctrlp.vim'
 Bundle 'tomasr/molokai'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'pangloss/vim-javascript'
 Bundle 'elzr/vim-json'
 
