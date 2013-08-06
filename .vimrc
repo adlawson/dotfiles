@@ -27,7 +27,7 @@ set background=dark    "dark terminal
 set nowrap             "disable word wrap
 set textwidth=120      "text width
 set colorcolumn=+0,-40 "columns
-set scrolloff=2        "display 2 lines above/below cursor
+set scrolloff=8        "display 8 lines above/below cursor
 set showmatch          "show matching brace
 set showmode           "show mode in status bar (insert/replace/...)
 set showcmd            "show typed command in status bar
