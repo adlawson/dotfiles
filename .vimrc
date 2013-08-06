@@ -46,7 +46,6 @@ set shiftwidth=4       "indents use 4 spaces
 set autoread           "reload files changed outside session
 set wildmenu           "command autocomplete
 set wildmode=longest:full,full "command autocomplete mode
-let g:gitgutter_eager = 0 "disable git gutter on BufEnter, TabEnter and FocusGained
 
 "system settings
 set hidden             "remember undo after quit
