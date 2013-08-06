@@ -13,8 +13,10 @@ Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tomasr/molokai'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'airblade/vim-gitgutter'
 Bundle 'pangloss/vim-javascript'
 Bundle 'elzr/vim-json'
+Bundle 'StanAngeloff/php.vim'
 
 "reenable filetype hinting
 filetype plugin indent on
@@ -44,6 +46,7 @@ set shiftwidth=4       "indents use 4 spaces
 set autoread           "reload files changed outside session
 set wildmenu           "command autocomplete
 set wildmode=longest:full,full "command autocomplete mode
+let g:gitgutter_eager = 0 "disable git gutter on BufEnter, TabEnter and FocusGained
 
 "system settings
 set hidden             "remember undo after quit
@@ -55,6 +58,7 @@ set history=1000       "command history
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=162 guibg=#DF0087
 autocmd ColorScheme * match ExtraWhitespace /\s\+$/ "highlight trailing whitespace
 colorscheme molokai    "set colour scheme
+highlight clear SignColumn "disable sign column highlight
 
 "persistent undo across sessions
 silent !mkdir ~/.vim/backups > /dev/null 2>&1
