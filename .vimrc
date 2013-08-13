@@ -11,7 +11,7 @@ Bundle 'gmarik/vundle'
 
 "plugins
 Bundle 'kien/ctrlp.vim'
-Bundle 'tomasr/molokai'
+Bundle 'sickill/vim-monokai'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'pangloss/vim-javascript'
@@ -55,10 +55,13 @@ set noswapfile         "no swapfile
 set history=1000       "command history
 
 "colour scheme
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=162 guibg=#DF0087
+autocmd ColorScheme * hi NonText ctermbg=none guibg=none
+autocmd ColorScheme * hi LineNr ctermbg=none guibg=none
+autocmd ColorScheme * hi Normal ctermbg=none guibg=none
+autocmd ColorScheme * hi clear SignColumn
+autocmd ColorScheme * hi ExtraWhitespace ctermbg=197 guibg=#f92672
 autocmd ColorScheme * match ExtraWhitespace /\s\+$/ "highlight trailing whitespace
-colorscheme molokai    "set colour scheme
-highlight clear SignColumn "disable sign column highlight
+colorscheme Monokai "set colour scheme
 
 "persistent undo across sessions
 silent !mkdir ~/.vim/backups > /dev/null 2>&1
