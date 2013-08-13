@@ -6,17 +6,12 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-"let Vundle manage itself
-Bundle 'gmarik/vundle'
-
 "plugins
+Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'sickill/vim-monokai'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'airblade/vim-gitgutter'
-Bundle 'pangloss/vim-javascript'
-Bundle 'elzr/vim-json'
-Bundle 'StanAngeloff/php.vim'
 
 "reenable filetype hinting
 filetype plugin indent on
