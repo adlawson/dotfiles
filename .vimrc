@@ -58,11 +58,6 @@ autocmd ColorScheme * hi ExtraWhitespace ctermbg=197 guibg=#f92672
 autocmd ColorScheme * match ExtraWhitespace /\s\+$/ "highlight trailing whitespace
 colorscheme Monokai "set colour scheme
 
-"persistent undo across sessions
-silent !mkdir ~/.vim/backups > /dev/null 2>&1
-set undodir=~/.vim/backups
-set undofile
-
 "disable arrow keys
 noremap <up> <nop>
 noremap <down> <nop>
