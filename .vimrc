@@ -18,10 +18,9 @@ filetype plugin indent on
 
 "display settings
 syntax on
-set background=dark    "dark terminal
 set nowrap             "disable word wrap
 set textwidth=120      "text width
-set colorcolumn=+0,-40 "columns
+set colorcolumn=+0,80  "columns
 set scrolloff=8        "display 8 lines above/below cursor
 set showmatch          "show matching brace
 set showmode           "show mode in status bar (insert/replace/...)
@@ -42,12 +41,13 @@ set shiftwidth=4       "indents use 4 spaces
 set autoread           "reload files changed outside session
 set wildmenu           "command autocomplete
 set wildmode=longest:full,full "command autocomplete mode
+set backspace=indent,eol,start "backspace erases previous inserts and autoindent
 
 "system settings
-set hidden             "remember undo after quit
+set hidden             "keep files open in buffer
 set nobackup           "no backup ~ files
 set noswapfile         "no swapfile
-set history=1000       "command history
+set history=100        "command history
 
 "colour scheme
 autocmd ColorScheme * hi NonText ctermbg=none guibg=none
