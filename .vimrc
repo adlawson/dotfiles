@@ -49,6 +49,9 @@ set nobackup           "no backup ~ files
 set noswapfile         "no swapfile
 set history=100        "command history
 
+"ignored patterns
+set wildignore+=*~,*.pid,.vagrant/**,**/tests/report
+
 "colour scheme
 autocmd ColorScheme * hi NonText ctermbg=none guibg=none
 autocmd ColorScheme * hi LineNr ctermbg=none guibg=none
