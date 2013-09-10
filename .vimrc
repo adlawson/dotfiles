@@ -49,7 +49,7 @@ set noswapfile         "no swapfile
 set history=100        "command history
 
 "ignored patterns
-set wildignore+=*~,*.pid,.vagrant/**,**/tests/report
+set wildignore+=*~,*.pid,**/tests/report,**/cache,**/logs
 
 "colour scheme
 autocmd ColorScheme * hi NonText ctermbg=none guibg=none
@@ -58,7 +58,7 @@ autocmd ColorScheme * hi Normal ctermbg=none guibg=none
 autocmd ColorScheme * hi clear SignColumn
 autocmd ColorScheme * hi ExtraWhitespace ctermbg=197 guibg=#f92672
 autocmd ColorScheme * match ExtraWhitespace /\s\+$/ "highlight trailing whitespace
-colorscheme Monokai "set colour scheme
+colorscheme Monokai    "set colour scheme
 
 "disable arrow keys
 noremap <up> <nop>
