@@ -19,8 +19,7 @@ filetype plugin indent on
 "display settings
 syntax on
 set nowrap             "disable word wrap
-set textwidth=120      "text width
-set colorcolumn=+0,80  "columns
+set colorcolumn=80,120 "columns
 set scrolloff=8        "display 8 lines above/below cursor
 set showmatch          "show matching brace
 set showmode           "show mode in status bar (insert/replace/...)
