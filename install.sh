@@ -5,4 +5,5 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     rsync --exclude ".git/" --exclude ".DS_Store" --exclude "install.sh" \
           --exclude "README.md" --exclude ".gitmodules" -av --no-perms . ~
     source ~/.bash_profile
+    vim +BundleInstall +qall
 fi
