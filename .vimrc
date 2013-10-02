@@ -37,28 +37,31 @@ set smarttab           "smart tab handling for indenting
 set expandtab          "spaces rather than tabs
 set tabstop=4          "tabs use 4 spaces
 set shiftwidth=4       "indents use 4 spaces
-set autoread           "reload files changed outside session
 set wildmenu           "command autocomplete
 set wildmode=longest:full,full "command autocomplete mode
 set backspace=indent,eol,start "backspace erases previous inserts and autoindent
 
 "system settings
 set hidden             "keep files open in buffer
-set nobackup           "no backup ~ files
-set noswapfile         "no swapfile
-set history=100        "command history
+set nobackup           "no backup files
+set nowritebackup      "no backup files written
+set noswapfile         "no ~ swap files
+set history=10         "command history
 
 "ignored patterns
 set wildignore+=*~,*.pid,**/tests/report,**/cache,**/logs
 
 "colour scheme
-autocmd ColorScheme * hi NonText ctermbg=none guibg=none
-autocmd ColorScheme * hi LineNr ctermbg=none guibg=none
-autocmd ColorScheme * hi Normal ctermbg=none guibg=none
-autocmd ColorScheme * hi clear SignColumn
-autocmd ColorScheme * hi ExtraWhitespace ctermbg=197 guibg=#f92672
-autocmd ColorScheme * match ExtraWhitespace /\s\+$/ "highlight trailing whitespace
-colorscheme Monokai    "set colour scheme
+augroup ColorSchemeGroup
+    autocmd!
+    autocmd ColorScheme * hi NonText ctermbg=none guibg=none
+    autocmd ColorScheme * hi LineNr ctermbg=none guibg=none
+    autocmd ColorScheme * hi Normal ctermbg=none guibg=none
+    autocmd ColorScheme * hi clear SignColumn
+    autocmd ColorScheme * hi ExtraWhitespace ctermbg=197 guibg=#f92672
+    autocmd ColorScheme * match ExtraWhitespace /\s\+$/
+augroup END
+silent! colorscheme Monokai
 
 "disable arrow keys
 noremap <up> <nop>
