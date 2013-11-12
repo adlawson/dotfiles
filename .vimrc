@@ -61,7 +61,7 @@ augroup ColorSchemeGroup
     autocmd ColorScheme * hi ExtraWhitespace ctermbg=197 guibg=#f92672
     autocmd ColorScheme * match ExtraWhitespace /\s\+$/
 augroup END
-silent! colorscheme Monokai
+silent! colorscheme monokai
 
 "disable arrow keys
 noremap <up> <nop>
