@@ -54,11 +54,6 @@ set wildignore+=*~,*.pid,**/cache,**/logs,**/tests/report,**/vendor/**/tests,**/
 "colour scheme
 augroup ColorSchemeGroup
     autocmd!
-    autocmd ColorScheme * hi NonText ctermbg=none guibg=none
-    autocmd ColorScheme * hi LineNr ctermbg=none guibg=none
-    autocmd ColorScheme * hi Normal ctermbg=none guibg=none
-    autocmd ColorScheme * hi clear SignColumn
-    autocmd ColorScheme * hi ExtraWhitespace ctermbg=66 guibg=#528b8b
     autocmd ColorScheme * match ExtraWhitespace /\s\+$/
 augroup END
 silent! colorscheme sorcerer
