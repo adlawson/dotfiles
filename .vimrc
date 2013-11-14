@@ -9,9 +9,9 @@ call vundle#rc()
 "plugins
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
-Bundle 'sickill/vim-monokai'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'adlawson/vim-sorcerer'
 
 "reenable filetype hinting
 filetype plugin indent on
@@ -58,10 +58,10 @@ augroup ColorSchemeGroup
     autocmd ColorScheme * hi LineNr ctermbg=none guibg=none
     autocmd ColorScheme * hi Normal ctermbg=none guibg=none
     autocmd ColorScheme * hi clear SignColumn
-    autocmd ColorScheme * hi ExtraWhitespace ctermbg=197 guibg=#f92672
+    autocmd ColorScheme * hi ExtraWhitespace ctermbg=66 guibg=#528b8b
     autocmd ColorScheme * match ExtraWhitespace /\s\+$/
 augroup END
-silent! colorscheme monokai
+silent! colorscheme sorcerer
 
 "disable arrow keys
 noremap <up> <nop>
