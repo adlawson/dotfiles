@@ -27,7 +27,7 @@ set showcmd            "show typed command in status bar
 set ruler              "show cursor position in status bar
 set hlsearch           "highlight search
 set incsearch          "incremental search
-set number             "show line numbers
+set nonumber           "hide line numbers
 
 "editor settings
 set ignorecase         "case insensitive search
