@@ -12,6 +12,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'adlawson/vim-sorcerer'
+Bundle 'elixir-lang/vim-elixir'
 
 "reenable filetype hinting
 filetype plugin indent on
