@@ -5,3 +5,5 @@
 	email = adlawson@gmail.com
 [color]
 	ui = true
+[diff]
+    noprefix = true
