@@ -35,5 +35,5 @@ Available options:
   -v    Skip installing the updated vim bundles
 
 Environment variables:
-  DOTFILES_DIR    The path to install the new files to
+  DOTFILES_DIR    The path to install the new files to (Defaults to $HOME)
 ```
