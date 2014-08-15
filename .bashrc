@@ -5,12 +5,6 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-[core]
-	editor = vim
-[user]
-	name = adlawson
-	email = adlawson@gmail.com
-[color]
-	ui = true
-[diff]
-    noprefix = true
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/share/npm/bin:$PATH
+export PATH=./node_modules/.bin:$PATH
