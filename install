@@ -55,8 +55,7 @@ main() {
             -h) help; shift;;
             -s) source=false; shift;;
             -v) vimrc=false; shift;;
-            --) shift; break;;
-            * ) shift; break;;
+            *)  break;;
         esac
     done
 
@@ -65,8 +64,8 @@ main() {
 
         install
 
-        [[ $vimrc = true ]] && echo 'vimming'
-        [[ $source = true ]] && echo 'sourcing'
+        [[ $vimrc = true ]] && install-vimrc
+        [[ $source = true ]] && refresh-source
     else
         echo
         echo "aborting..."
