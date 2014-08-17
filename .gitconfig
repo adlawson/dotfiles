@@ -13,4 +13,4 @@
 [color]
 	ui = true
 [diff]
-    noprefix = true
+	noprefix = true
