@@ -11,16 +11,17 @@ set nocompatible
 "manage plugins with Vundle
 filetype off
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 
 "plugins
-Bundle 'gmarik/vundle'
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'adlawson/vim-sorcerer'
+Plugin 'gmarik/vundle'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'w0ng/vim-hybrid'
 
 "reenable filetype hinting
+call vundle#end()
 filetype plugin indent on
 
 "display settings
@@ -63,8 +64,11 @@ set wildignore+=**/tests/report,**/vendor/**/tests,**/node_modules/**/tests
 augroup ColorSchemeGroup
     autocmd!
     autocmd ColorScheme * match ExtraWhitespace /\s\+$/
+    autocmd ColorScheme * hi ExtraWhitespace ctermbg=197 guibg=#f92672
+    autocmd ColorScheme * hi Normal ctermbg=none guibg=none
+    autocmd ColorScheme * hi clear SignColumn
 augroup END
-silent! colorscheme sorcerer
+silent! colorscheme hybrid
 
 "disable arrow keys
 noremap <up> <nop>
