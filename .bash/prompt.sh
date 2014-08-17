@@ -17,8 +17,7 @@ function __name_and_server {
 
 function bash_prompt {
     if [[ 'function' = $(type -t __git_ps1) ]]; then
-        GIT_PS1_SHOWCOLORHINTS=1
-        PROMPT_COMMAND='__git_ps1 "$(__name_and_server) \w" "\$ " " [%s]"'
+        PROMPT_COMMAND='__git_ps1 "$(__name_and_server) \W" "\$ " " [%s]"'
     else
         PS1="$(__name_and_server) \w\$ "
     fi
