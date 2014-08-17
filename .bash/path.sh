@@ -5,7 +5,7 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-source ~/.bash/path.sh
-source ~/.bash/env.sh
-source ~/.bash/completion.sh
-source ~/.bash/prompt.sh
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/share/npm/bin:$PATH
+export PATH=$HOME/node_modules/.bin:$PATH
+export PATH=./node_modules/.bin:$PATH

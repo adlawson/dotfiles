@@ -33,7 +33,4 @@ Available options:
   -h    Display this help message
   -s    Skip sourcing the updated .bash_profile
   -v    Skip installing the updated vim bundles
-
-Environment variables:
-  DOTFILES_DIR    The path to install the new files to (Defaults to $HOME)
 ```

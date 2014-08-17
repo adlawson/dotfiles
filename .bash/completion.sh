@@ -5,7 +5,4 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-source ~/.bash/path.sh
-source ~/.bash/env.sh
-source ~/.bash/completion.sh
-source ~/.bash/prompt.sh
+source ~/.bash/lib/git-completion.bash

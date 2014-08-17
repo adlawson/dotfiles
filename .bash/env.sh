@@ -5,7 +5,10 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-source ~/.bash/path.sh
-source ~/.bash/env.sh
-source ~/.bash/completion.sh
-source ~/.bash/prompt.sh
+export EDITOR='vim'
+export HISTCONTROL=ignoredups
+export TERM='xterm-256color'
+
+export LANG=en_GB.UTF-8
+export LC_ALL=$LANG
+export LC_CTYPE=$LANG
