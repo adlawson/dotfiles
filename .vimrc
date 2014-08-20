@@ -14,7 +14,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
 
 "plugins
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'airblade/vim-gitgutter'
