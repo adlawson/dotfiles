@@ -34,3 +34,11 @@ Available options:
   -s    Skip sourcing the updated .bash_profile
   -v    Skip installing the updated vim bundles
 ```
+
+### License
+While a license is pretty useless for this repository, I've included one for
+completeness. The content of this library is released under the
+**MIT License** by **Andrew Lawson**. You can find a copy of this license in
+[`LICENSE`][license] or at http://www.opensource.org/licenses/mit.
+
+[license]: LICENSE
