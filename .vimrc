@@ -58,8 +58,8 @@ set noswapfile         "no ~ swap files
 set history=10         "command history
 
 "ignored patterns
-set wildignore+=*~,*.pid,**/cache,**/logs,**/_build,*.beam
-set wildignore+=**/tests/report,**/vendor/**/tests,**/node_modules/**/tests
+set wildignore+=*~,*.pid,**/cache,**/log*,**/_build,*.beam,**/target
+set wildignore+=**/test/report,**/vendor/**/test*,**/node_modules/**/test*
 
 "colour scheme
 augroup ColorSchemeGroup
