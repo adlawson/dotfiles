@@ -18,7 +18,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'jnurmine/Zenburn'
+Plugin 'vim-scripts/desertEx'
 Plugin 'derekwyatt/vim-scala'
 
 "reenable filetype hinting
@@ -67,11 +67,13 @@ augroup ColorSchemeGroup
     autocmd ColorScheme * match ExtraWhitespace /\s\+$/
     autocmd ColorScheme * hi ExtraWhitespace ctermbg=197 guibg=#f92672
     autocmd ColorScheme * hi Normal ctermbg=none guibg=none
+    autocmd ColorScheme * hi NonText ctermbg=none guibg=none
     autocmd ColorScheme * hi clear LineNr
+    autocmd ColorScheme * hi Type guifg=#87afaf gui=bold ctermfg=109 cterm=bold
     autocmd ColorScheme * hi clear SignColumn
 augroup END
 let g:zenburn_unified_CursorColumn = 1
-silent! colorscheme zenburn
+silent! colorscheme desertEx
 
 "disable arrow keys
 noremap <up> <nop>
