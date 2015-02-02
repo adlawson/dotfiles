@@ -20,6 +20,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-scripts/desertEx'
 Plugin 'derekwyatt/vim-scala'
+Plugin 'fatih/vim-go'
 
 "reenable filetype hinting
 call vundle#end()
