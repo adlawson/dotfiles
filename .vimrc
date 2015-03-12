@@ -14,13 +14,13 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
 
 "plugins
+Plugin 'airblade/vim-gitgutter'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'fatih/vim-go'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-scripts/desertEx'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'fatih/vim-go'
 
 "reenable filetype hinting
 call vundle#end()
