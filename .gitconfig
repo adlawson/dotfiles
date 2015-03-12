@@ -15,4 +15,6 @@
 [diff]
 	noprefix = true
 [alias]
-    staged = diff --cached
+	keep = "!f() { git branch | grep -v "$1" | grep -v '*' | xargs git branch -D; }; f"
+	purge = "!f() { git keep master; }; f"
+	staged = diff --cached
