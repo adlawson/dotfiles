@@ -3,3 +3,4 @@ source ~/.bash/env.sh
 source ~/.bash/completion.sh
 source ~/.bash/prompt.sh
 source ~/.bash/alias.sh
+source ~/.gnupg/gpg-agent.sh
