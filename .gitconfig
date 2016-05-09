@@ -3,6 +3,7 @@
 [user]
 	name = adlawson
 	email = adlawson@gmail.com
+	signingkey = E4E5D063
 [color]
 	ui = true
 [diff]
