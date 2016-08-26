@@ -14,3 +14,4 @@
 	keep = "!f() { git branch | grep -v "$1" | grep -v '*' | xargs git branch -D; }; f"
 	purge = "!f() { git keep 'master\\|develop\\|release'; }; f"
 	staged = diff --cached
+	rollback = "!f() { git reset --hard "$1" && git reset --soft '@{1}'; }; f"
