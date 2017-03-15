@@ -20,5 +20,6 @@ brew cask install docker
 brew cask install gpgtools
 brew cask install keybase
 brew cask install spotify
+brew cask install clamxav
 
 ln -s ~/Projects/adlawson/pass ~/.password-store
