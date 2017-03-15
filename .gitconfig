@@ -1,11 +1,12 @@
-[core]
-	editor = vim
+# This file is managed by adlawson/dotfiles
 [user]
 	name = adlawson
 	email = adlawson@gmail.com
 	signingkey = E4E5D063
 [color]
 	ui = true
+[core]
+	editor = vim
 [diff]
 	noprefix = true
 [gpg]
@@ -13,5 +14,5 @@
 [alias]
 	keep = "!f() { git branch | grep -v "$1" | grep -v '*' | xargs git branch -D; }; f"
 	purge = "!f() { git keep 'master\\|develop\\|release'; }; f"
-	staged = diff --cached
 	rollback = "!f() { git reset --hard "$1" && git reset --soft '@{1}'; }; f"
+	staged = diff --cached

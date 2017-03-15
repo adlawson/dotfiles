@@ -18,24 +18,10 @@ be overwritten in the process.
 ```bash
 git clone --recursive https://github.com/adlawson/dotfiles.git &&\
 cd dotfiles &&\
-./install
+./install.sh
 ```
 
-```bash
-adlawson:dotfiles adlawson$ ./install -h
-
-The install command rsyncs the dotfiles to the destination directory (~/) and
-runs any necessary installation scripts.
-
-Usage: install [options]
-
-Available options:
-  -h    Display this help message
-  -s    Skip sourcing the updated .bash_profile
-  -v    Skip installing the updated vim bundles
-```
-
-### License
+## License
 While a license is pretty useless for this repository, I've included one for
 completeness. The content of this library is released under the
 **MIT License** by **Andrew Lawson**. You can find a copy of this license in
