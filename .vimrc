@@ -1,4 +1,3 @@
-"This file is managed by adlawson/dotfiles
 "use Vim default settings
 set nocompatible
 

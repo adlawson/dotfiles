@@ -1,5 +1,3 @@
-# This file is managed by adlawson/dotfiles
-
 # From dotfiles source
 . ~/.dotfiles/bash/path.sh
 . ~/.dotfiles/bash/env.sh

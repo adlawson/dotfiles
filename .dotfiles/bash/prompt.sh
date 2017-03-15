@@ -1,4 +1,3 @@
-# This file is managed by adlawson/dotfiles
 source ~/.dotfiles/bash/lib/git-prompt.bash
 
 function __name_and_server {

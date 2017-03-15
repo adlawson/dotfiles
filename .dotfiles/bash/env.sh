@@ -1,4 +1,3 @@
-# This file is managed by adlawson/dotfiles
 export EDITOR='vim'
 export HISTCONTROL=ignoredups
 export TERM='xterm-256color'

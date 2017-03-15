@@ -5,10 +5,6 @@
 This project is mainly for my benefit. There are no configuration options other
 than those defined in the source.
 
-Files installed with this library will be marked `This file is managed by
-adlawson/dotfiles` to make them easily recognisable as files that will any lose
-changes upon installation.
-
 ## Installation
 The installer doesn't do anything clever. It symlinks the project (excluding
 things like `.git` and this README) into the home directory of the current
