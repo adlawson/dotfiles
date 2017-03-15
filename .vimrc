@@ -14,7 +14,7 @@ Plugin 'fatih/vim-go'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-scripts/desertEx'
+"Plugin 'vim-scripts/desertEx'
 
 "reenable filetype hinting
 call vundle#end()
