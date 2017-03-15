@@ -10,10 +10,9 @@ adlawson/dotfiles` to make them easily recognisable as files that will any lose
 changes upon installation.
 
 ## Installation
-The installer doesn't do anything clever. It `rsync`s the project (excluding
+The installer doesn't do anything clever. It symlinks the project (excluding
 things like `.git` and this README) into the home directory of the current
-user. You should be aware that any files that exist in the home directory may
-be overwritten in the process.
+user. An error will be raised if the target already exists and isn't a symlink.
 
 ```bash
 git clone --recursive https://github.com/adlawson/dotfiles.git &&\
