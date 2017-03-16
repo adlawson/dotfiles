@@ -15,6 +15,10 @@
     excludeVcsIgnoredPaths: false
     projectHome: "/Users/adlawson/Projects/adlawson"
     telemetryConsent: "no"
+    themes: [
+      "one-light-ui"
+      "one-light-syntax"
+    ]
   editor:
     fontSize: 12
     tabLength: 4
