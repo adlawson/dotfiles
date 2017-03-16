@@ -15,9 +15,11 @@ home() {
 git submodule update --init
 
 # Create necessary directories
+mkdir -p $HOME/.atom
 mkdir -p $HOME/.gnupg
 
 # Link config to home directory
+home ".atom/config.cson"
 home ".bash_profile"
 home ".bashrc"
 home ".dotfiles"

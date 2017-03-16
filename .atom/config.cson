@@ -1,0 +1,29 @@
+"*":
+  core:
+    audioBeep: false
+    closeEmptyWindows: false
+    disabledPackages: [
+      "tabs"
+      "status-bar"
+      "autosave"
+      "autocomplete-atom-api"
+      "autocomplete-css"
+      "autocomplete-html"
+      "autocomplete-plus"
+      "autocomplete-snippets"
+    ]
+    excludeVcsIgnoredPaths: false
+    projectHome: "/Users/adlawson/Projects/adlawson"
+    telemetryConsent: "no"
+  editor:
+    fontSize: 12
+    tabLength: 4
+  "exception-reporting":
+    userId: "eaf03499-4cbe-432b-8d82-002d5916ba8b"
+  welcome:
+    showOnStartup: false
+  "xml-formatter":
+    endLineCharacter: "LF (\\n)"
+".scala.source":
+  editor:
+    autoIndentOnPaste: false
