@@ -1,5 +1,3 @@
-alias vargant="vagrant"
-
 alias ansible-vault="docker run --rm -i \
     -v `pwd`:/src \
     adlawson/ansible-vault:2.0"
@@ -14,3 +12,7 @@ alias sbt="docker run --rm -it \
     -e ARTIFACTORY_USER \
     -e ARTIFACTORY_PASS \
     adlawson/sbt:fakeroot"
+
+alias vargant="vagrant"
+
+alias vault="docker run --rm -it vault"
