@@ -7,4 +7,4 @@
 # From local environment
 [ -f $(brew --prefix)/etc/bash_completion ] && . $(brew --prefix)/etc/bash_completion
 [ -f ~/.gpg-agent-info ] && . ~/.gpg-agent-info
-[ -f ~/.bash_profile ] && . ~/.bash_profile
+[ -f ~/.bashrc ] && . ~/.bashrc

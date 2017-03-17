@@ -20,7 +20,7 @@ mkdir -p $HOME/.gnupg
 
 # Link config to home directory
 home ".atom/config.cson"
-home ".bashrc"
+home ".bash_profile"
 home ".dotfiles"
 home ".gnupg/gpg-agent.conf"
 home ".gnupg/gpg.conf"
