@@ -6,6 +6,10 @@ alias mysql="docker run --rm -i \
     -v $HOME/.my.cnf:/etc/mysql/conf.d/my.cnf \
     adlawson/mysql:5.7 mysql"
 
+alias node="docker run --rm -it -v $PWD:/src -w /src node"
+
+alias npm="docker run --rm -it -v $PWD:/src -w /src --entrypoint npm node"
+
 alias sbt="docker run --rm -it \
     -v "$HOME/.ivy2":/root/.ivy2 \
     -v "$PWD":/src \
