@@ -1,5 +1,5 @@
 alias ansible-vault="docker run --rm -i \
-    -v `pwd`:/src \
+    -v "$PWD":/src \
     adlawson/ansible-vault:2.0"
 
 alias mysql="docker run --rm -i \
@@ -8,7 +8,7 @@ alias mysql="docker run --rm -i \
 
 alias sbt="docker run --rm -it \
     -v "$HOME/.ivy2":/root/.ivy2 \
-    -v `pwd`:/src \
+    -v "$PWD":/src \
     -e ARTIFACTORY_USER \
     -e ARTIFACTORY_PASS \
     adlawson/sbt:fakeroot"
