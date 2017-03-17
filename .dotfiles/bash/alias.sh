@@ -19,4 +19,4 @@ alias sbt="docker run --rm -it \
 
 alias vargant="vagrant"
 
-alias vault="docker run --rm -it vault"
+alias vault="docker run --rm -it -p 8200:8200 vault"
