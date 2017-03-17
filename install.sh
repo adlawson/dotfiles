@@ -20,7 +20,7 @@ mkdir -p $HOME/.gnupg
 
 # Link config to home directory
 home ".atom/config.cson"
-home ".bash_profile"
+home ".bashrc"
 home ".dotfiles"
 home ".gnupg/gpg-agent.conf"
 home ".gnupg/gpg.conf"
@@ -33,4 +33,4 @@ home ".vimrc"
 vim +BundleInstall +qall
 
 # Resource
-. ~/.bash_profile
+. ~/.bashrc
