@@ -8,7 +8,12 @@ alias mysql="docker run --rm -i \
 
 alias node="docker run --rm -it -v \"$PWD\":/src -w /src node"
 
-alias node="docker run --rm -it -v \"$PWD\":/src -w /src --entrypoint npm node"
+alias npm="docker run --rm -it \
+    -v \"$PWD\":/src \
+    -v \"$HOME\"/.npm:/root/.npm \
+    -v \"$HOME\"/.npmrc:/root/.npmrc \
+    -w /src \
+    --entrypoint npm node"
 
 alias sbt="docker run --rm -it \
     -v \"$HOME/.ivy2\":/root/.ivy2 \
