@@ -7,3 +7,4 @@ export LC_ALL=$LANG
 export LC_CTYPE=$LANG
 
 export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh
