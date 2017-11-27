@@ -29,8 +29,11 @@ home ".my.cnf"
 home ".vim"
 home ".vimrc"
 
+# Link password store
+symlink "$HOME/Projects/adlawson/pass" "$HOME/.password-store"
+
 # Install vim plugins
 vim +BundleInstall +qall
 
 # Resource
-. ~/.bashrc
+. ~/.bash_profile
