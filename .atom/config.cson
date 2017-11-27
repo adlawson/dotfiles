@@ -21,7 +21,6 @@
     ]
   editor:
     fontSize: 12
-    tabLength: 4
   "exception-reporting":
     userId: "eaf03499-4cbe-432b-8d82-002d5916ba8b"
   welcome:
