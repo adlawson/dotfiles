@@ -29,6 +29,9 @@ home ".my.cnf"
 home ".vim"
 home ".vimrc"
 
+# Link Vscode settings
+symlink ".vscode/Library/Application\ Support/Code/User" "$HOME/Library/Application\ Support/Code/User"
+
 # Link password store
 symlink "$HOME/Projects/adlawson/pass" "$HOME/.password-store"
 
