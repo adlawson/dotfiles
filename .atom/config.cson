@@ -21,12 +21,17 @@
     ]
   editor:
     fontSize: 12
+    showIndentGuide: true
   "exception-reporting":
     userId: "eaf03499-4cbe-432b-8d82-002d5916ba8b"
   welcome:
     showOnStartup: false
   "xml-formatter":
     endLineCharacter: "LF (\\n)"
+".go.source":
+  editor:
+    tabLength: 8
+    tabType: "hard"
 ".scala.source":
   editor:
     autoIndentOnPaste: false
