@@ -2,8 +2,8 @@
 
 symlink() {
     local source="$1" destination="$2"
-    [ ! -e $destination ] && ln -s $PWD/$source $destination
-    [ ! -L $destination ] && echo "File at path $destination already exists" 1>&2
+    [ ! -e "$destination" ] && ln -s "$PWD/$source" "$destination"
+    [ ! -L "$destination" ] && echo "File at path "$destination" already exists" 1>&2
 }
 
 home() {
@@ -30,7 +30,7 @@ home ".vim"
 home ".vimrc"
 
 # Link Vscode settings
-symlink ".vscode/Library/Application\ Support/Code/User" "$HOME/Library/Application\ Support/Code/User"
+symlink ".vscode/Library/Application Support/Code/User" "$HOME/Library/Application Support/Code/User"
 
 # Link password store
 symlink "$HOME/Projects/adlawson/pass" "$HOME/.password-store"
