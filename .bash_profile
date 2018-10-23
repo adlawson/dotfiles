@@ -1,6 +1,7 @@
 # From dotfiles source
 . ~/.dotfiles/bash/path.sh
 . ~/.dotfiles/bash/env.sh
+. ~/.dotfiles/bash/langs.sh
 . ~/.dotfiles/bash/functions.sh
 . ~/.dotfiles/bash/prompt.sh
 . ~/.dotfiles/bash/alias.sh
