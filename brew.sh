@@ -6,7 +6,6 @@ brew install bash
 brew install wget
 brew install git
 brew install vim
-brew install pass
 brew install bash-completion
 brew install kubectl
 brew install gnupg2

@@ -3,17 +3,18 @@ set nocompatible
 
 "manage plugins with Vundle
 filetype off
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 "plugins
 Plugin 'airblade/vim-gitgutter'
 Plugin 'derekwyatt/vim-scala'
+Plugin 'editorconfig/editorconfig-vim'
 Plugin 'fatih/vim-go'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
-"Plugin 'vim-scripts/desertEx'
+Plugin 'vim-scripts/desertEx'
 
 "reenable filetype hinting
 call vundle#end()
@@ -30,7 +31,7 @@ set showcmd            "show typed command in status bar
 set ruler              "show cursor position in status bar
 set hlsearch           "highlight search
 set incsearch          "incremental search
-set nonumber           "hide line numbers
+set number             "show line numbers
 
 "editor settings
 set ignorecase         "case insensitive search
@@ -50,27 +51,76 @@ set nobackup           "no backup files
 set nowritebackup      "no backup files written
 set noswapfile         "no ~ swap files
 set history=10         "command history
+set mouse=nicr         "enable mouse support
 
 "ignored patterns
 set wildignore+=*~,*.pid,**/cache/*,**/log/*,**/_build/*,*.beam,**/target/*
 set wildignore+=**/test/report/*,**/vendor/**/test*,**/node_modules/**/test*
 
+"netrw
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
+
+"vim-go
+let g:go_highlight_structs = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_operators = 1
+
 "colour scheme
 augroup ColorSchemeGroup
     autocmd!
-    autocmd ColorScheme * match ExtraWhitespace /\s\+$/
-    autocmd ColorScheme * hi ExtraWhitespace ctermbg=197 guibg=#f92672
     autocmd ColorScheme * hi Normal ctermbg=none guibg=none
     autocmd ColorScheme * hi NonText ctermbg=none guibg=none
-    autocmd ColorScheme * hi clear LineNr
+    autocmd ColorScheme * hi LineNr cterm=none gui=none
+    autocmd ColorScheme * hi colorcolumn ctermbg=237 guibg=#3a3a3a
     autocmd ColorScheme * hi Type guifg=#87afaf gui=bold ctermfg=109 cterm=bold
     autocmd ColorScheme * hi clear SignColumn
+    autocmd ColorScheme * hi ExtraWhitespace ctermbg=210 guibg=salmon
+    autocmd ColorScheme * match ExtraWhitespace /\s\+$/
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
 augroup END
-let g:zenburn_unified_CursorColumn = 1
 silent! colorscheme desertEx
 
-"disable arrow keys
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
+"command & leader shortcuts and alternatives
+map , <leader>
+nnoremap ; :
+nnoremap \ ,
+
+"clear search
+nmap <silent> <leader>/ :nohlsearch<CR>
+
+"save with sudo
+command! -nargs=0 WriteWithSudo :w !sudo tee % >/dev/null
+cnoreabbrev ww WriteWithSudo
+
+"trailing whitespace
+command! -nargs=0 RemoveExtraWhitespace :%s/\s\+$//
+nnoremap <leader>rw :RemoveExtraWhitespace<CR>
+
+"vim-go abbreviations
+cnoreabbrev gobuild GoBuild
+cnoreabbrev godef GoDef
+cnoreabbrev godrop GoDrop
+cnoreabbrev goimport GoImport
+cnoreabbrev gotest GoTest
+cnoreabbrev gotestfunc GoTestFunc
+cnoreabbrev build GoBuild
+cnoreabbrev def GoDef
+cnoreabbrev drop GoDrop
+cnoreabbrev import GoImport
+cnoreabbrev test GoTest
+cnoreabbrev testfunc GoTestFunc
+
+"move a line of text using ALT+[jk]
+"https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
+"https://stackoverflow.com/questions/5379837/is-it-possible-to-mapping-alt-hjkl-in-insert-mode
+nnoremap ∆ :m .+1<CR>==
+nnoremap ˚ :m .-2<CR>==
+inoremap ∆ <Esc>:m .+1<CR>==gi
+inoremap ˚ <Esc>:m .-2<CR>==gi
+vnoremap ∆ :m '>+1<CR>gv=gv
+vnoremap ˚ :m '<-2<CR>gv=gv
