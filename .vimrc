@@ -32,7 +32,7 @@ set ruler              "show cursor position in status bar
 set hlsearch           "highlight search
 set incsearch          "incremental search
 set number             "show line numbers
-set termguicolors      "use theme hex colours rather than xterm
+set termguicolors      "use theme gui colours rather than cterm
 
 "editor settings
 set ignorecase         "case insensitive search
