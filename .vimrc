@@ -32,6 +32,7 @@ set ruler              "show cursor position in status bar
 set hlsearch           "highlight search
 set incsearch          "incremental search
 set number             "show line numbers
+set termguicolors      "use theme hex colours rather than xterm
 
 "editor settings
 set ignorecase         "case insensitive search
@@ -44,6 +45,8 @@ set shiftwidth=4       "indents use 4 spaces
 set wildmenu           "command autocomplete
 set wildmode=longest:full,full "command autocomplete mode
 set backspace=indent,eol,start "backspace erases previous inserts and autoindent
+set timeoutlen=500     "length of time to wait before <Esc>
+set ttimeoutlen=50     "length of time to wait before <Esc>
 
 "system settings
 set hidden             "keep files open in buffer
@@ -70,13 +73,14 @@ let g:go_highlight_operators = 1
 "colour scheme
 augroup ColorSchemeGroup
     autocmd!
-    autocmd ColorScheme * hi Normal ctermbg=none guibg=none
-    autocmd ColorScheme * hi NonText ctermbg=none guibg=none
-    autocmd ColorScheme * hi LineNr cterm=none gui=none
-    autocmd ColorScheme * hi colorcolumn ctermbg=237 guibg=#3a3a3a
+    autocmd ColorScheme * hi Normal ctermbg=NONE guibg=NONE
+    autocmd ColorScheme * hi NonText ctermbg=NONE guibg=NONE
+    autocmd ColorScheme * hi LineNr cterm=NONE gui=NONE
+    autocmd ColorScheme * hi colorcolumn ctermbg=237 guibg=#15212e
     autocmd ColorScheme * hi Type guifg=#87afaf gui=bold ctermfg=109 cterm=bold
     autocmd ColorScheme * hi clear SignColumn
     autocmd ColorScheme * hi ExtraWhitespace ctermbg=210 guibg=salmon
+    autocmd ColorScheme * hi cursorLine ctermbg=NONE guibg=NONE
     autocmd ColorScheme * match ExtraWhitespace /\s\+$/
     autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
     autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
