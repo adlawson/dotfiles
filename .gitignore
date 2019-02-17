@@ -1,3 +1,4 @@
 /.vim/.*
 /.vim/bundle/*
 !/.vim/bundle/Vundle.vim
+/.zsh/monzo.zsh

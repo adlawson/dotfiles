@@ -29,6 +29,7 @@ home ".my.cnf"
 home ".vim"
 home ".vimrc"
 home ".zsh"
+home ".zshrc"
 
 # Link Vscode settings
 symlink ".vscode/Library/Application Support/Code/User" "$HOME/Library/Application Support/Code/User"

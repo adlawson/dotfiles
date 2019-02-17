@@ -90,12 +90,20 @@ map , <leader>
 nnoremap ; :
 nnoremap \ ,
 
+"netrw
+cnoreabbrev E Explore
+cnoreabbrev e Explore
+
 "clear search
 nmap <silent> <leader>/ :nohlsearch<CR>
 
 "save with sudo
 command! -nargs=0 WriteWithSudo :w !sudo tee % >/dev/null
-cnoreabbrev ww WriteWithSudo
+nnoremap <leader>ww :WriteWithSudo<CR>
+
+"create current directory
+command! -nargs=0 Mkdir !mkdir -p %:h
+cnoreabbrev mkdir Mkdir
 
 "trailing whitespace
 command! -nargs=0 RemoveExtraWhitespace :%s/\s\+$//
