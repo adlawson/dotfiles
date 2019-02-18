@@ -12,7 +12,7 @@ Plugin 'derekwyatt/vim-scala'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'fatih/vim-go'
 Plugin 'gmarik/Vundle.vim'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/desertEx'
 
@@ -64,6 +64,11 @@ set wildignore+=**/test/report/*,**/vendor/**/test*,**/node_modules/**/test*
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
+"ctrlp
+let g:ctrlp_prompt_mappings = {
+    \ 'PrtInsert("c")': ['<c-v>', '<MiddleMouse>', '<insert>']
+\}
+
 "vim-go
 let g:go_highlight_structs = 1
 let g:go_highlight_methods = 1
@@ -96,7 +101,10 @@ nnoremap \ ,
 
 "netrw
 cnoreabbrev E Explore
-cnoreabbrev e Explore
+
+"gutter
+nnoremap <leader>git :GitGutterToggle<CR>
+nnoremap <leader>num :set invnumber<CR>
 
 "clear search
 nmap <silent> <leader>/ :nohlsearch<CR>
