@@ -56,18 +56,24 @@ set noswapfile         "no ~ swap files
 set history=10         "command history
 set mouse=nicr         "enable mouse support
 
-"ignored patterns
-set wildignore+=*~,*.pid,**/cache/*,**/log/*,**/_build/*,*.beam,**/target/*
+"ctrlp
+set wildignore+=**/.git/*,*~,*.pid,**/cache/*,**/log/*,**/_build/*,*.beam,**/target/*
 set wildignore+=**/test/report/*,**/vendor/**/test*,**/node_modules/**/test*
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_prompt_mappings = {
+    \ 'PrtInsert("c")': ['<c-v>', '<MiddleMouse>', '<insert>']
+\}
+
+"ctrlp with ripgrep
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
 
 "netrw
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
-
-"ctrlp
-let g:ctrlp_prompt_mappings = {
-    \ 'PrtInsert("c")': ['<c-v>', '<MiddleMouse>', '<insert>']
-\}
 
 "vim-go
 let g:go_highlight_structs = 1
