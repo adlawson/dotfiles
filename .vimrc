@@ -15,6 +15,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/desertEx'
+Plugin 'rakr/vim-one'
 
 "reenable filetype hinting
 call vundle#end()
@@ -55,6 +56,7 @@ set nowritebackup      "no backup files written
 set noswapfile         "no ~ swap files
 set history=10         "command history
 set mouse=nicr         "enable mouse support
+set autochdir          "chdir to directory of current buffer
 
 "ctrlp
 set wildignore+=**/.git/*,*~,*.pid,**/cache/*,**/log/*,**/_build/*,*.beam,**/target/*
@@ -74,6 +76,9 @@ endif
 "netrw
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_preview = 1
 
 "vim-go
 let g:go_highlight_structs = 1
@@ -87,7 +92,7 @@ augroup ColorSchemeGroup
     autocmd ColorScheme * hi Normal ctermbg=NONE guibg=NONE
     autocmd ColorScheme * hi NonText ctermbg=NONE guibg=NONE
     autocmd ColorScheme * hi LineNr cterm=NONE gui=NONE
-    autocmd ColorScheme * hi colorcolumn ctermbg=237 guibg=#15212e
+    "autocmd ColorScheme * hi colorcolumn ctermbg=237 guibg=#15212e
     autocmd ColorScheme * hi Type guifg=#87afaf gui=bold ctermfg=109 cterm=bold
     autocmd ColorScheme * hi clear SignColumn
     autocmd ColorScheme * hi ExtraWhitespace ctermbg=210 guibg=salmon
@@ -98,15 +103,12 @@ augroup ColorSchemeGroup
     autocmd InsertLeave * match ExtraWhitespace /\s\+$/
     autocmd BufWinLeave * call clearmatches()
 augroup END
-silent! colorscheme desertEx
-
-"command & leader shortcuts and alternatives
-map , <leader>
-nnoremap ; :
-nnoremap \ ,
+silent! colorscheme one
+set background=light
 
 "netrw
-cnoreabbrev E Explore
+map <silent> <C-E> :Vexplore<CR>
+cnoreabbrev E Vexplore
 
 "gutter
 nnoremap <leader>git :GitGutterToggle<CR>
@@ -126,20 +128,6 @@ cnoreabbrev mkdir Mkdir
 "trailing whitespace
 command! -nargs=0 RemoveExtraWhitespace :%s/\s\+$//
 nnoremap <leader>rw :RemoveExtraWhitespace<CR>
-
-"vim-go abbreviations
-cnoreabbrev gobuild GoBuild
-cnoreabbrev godef GoDef
-cnoreabbrev godrop GoDrop
-cnoreabbrev goimport GoImport
-cnoreabbrev gotest GoTest
-cnoreabbrev gotestfunc GoTestFunc
-cnoreabbrev build GoBuild
-cnoreabbrev def GoDef
-cnoreabbrev drop GoDrop
-cnoreabbrev import GoImport
-cnoreabbrev test GoTest
-cnoreabbrev testfunc GoTestFunc
 
 "move a line of text using ALT+[jk]
 "https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
