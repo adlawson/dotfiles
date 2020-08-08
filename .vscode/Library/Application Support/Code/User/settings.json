@@ -33,6 +33,8 @@
         "[Monokai]": {
             // AtomOne Light sidebar
             "editor.background": "#2c2d26",
+            "editorError.foreground": "#e65544",
+            "editorWarning.foreground": "#e65544",
             "gitDecoration.addedResourceForeground": "#4ca24a",
             "gitDecoration.conflictingResourceForeground": "#a726a5",
             "gitDecoration.deletedResourceForeground": "#e65544",
