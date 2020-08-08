@@ -9,6 +9,9 @@
     "explorer.autoReveal": true,
     "explorer.openEditors.visible": 0,
     "extensions.ignoreRecommendations": true,
+    "files.associations": {
+        "Dockerfile-*": "dockerfile",
+    },
     "files.exclude": {
         "**/.git/": true,
         "**/.hg": true,
@@ -19,7 +22,6 @@
     "files.insertFinalNewline": true,
     "go.formatTool": "goimports",
     "search.exclude": {
-        "**/*.rule": true,
         "**/bower_components": true,
         "**/node_modules": true,
         "**/service.yml": true,
