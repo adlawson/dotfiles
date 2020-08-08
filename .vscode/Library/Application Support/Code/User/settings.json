@@ -2,10 +2,7 @@
     "breadcrumbs.enabled": true,
     "editor.minimap.enabled": false,
     "editor.multiCursorModifier": "ctrlCmd",
-    "editor.rulers": [
-        80,
-        120
-    ],
+    "editor.rulers": [80, 120],
     "explorer.autoReveal": true,
     "explorer.openEditors.visible": 0,
     "extensions.ignoreRecommendations": true,
@@ -24,7 +21,6 @@
     "search.exclude": {
         "**/bower_components": true,
         "**/node_modules": true,
-        "**/service.yml": true,
         "**/target": true
     },
     "terminal.integrated.copyOnSelection": true,
@@ -34,6 +30,9 @@
     "workbench.colorCustomizations": {
         "[Monokai]": {
             // AtomOne Light sidebar
+            "editorRuler.foreground": "#41413d",
+            "editorIndentGuide.background": "#41413d",
+            "editorIndentGuide.activeBackground": "#6c6c66",
             "editor.background": "#2c2d26",
             "editorError.foreground": "#e65544",
             "editorWarning.foreground": "#e65544",
@@ -53,6 +52,13 @@
             "sideBar.background": "#eaeaeb",
             "sideBar.foreground": "#383a42",
             "sideBarSectionHeader.background": "#fafafa",
+            "statusBar.background": "#2c2d26",
+            "statusBar.foreground": "#90908a",
+            "statusBar.border": "#41413d",
+            "titleBar.activeBackground": "#eaeaeb",
+            "titleBar.activeForeground": "#383a42",
+            "titleBar.inactiveBackground": "#eaeaeb",
+            "titleBar.inactiveForeground": "#383a42"
         },
     },
     "workbench.colorTheme": "Monokai",
