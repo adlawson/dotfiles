@@ -1,5 +1,8 @@
 {
     "breadcrumbs.enabled": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.codeActionsOnSave": {},
+    "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
     "editor.minimap.enabled": false,
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.rulers": [80, 120],
@@ -7,14 +10,14 @@
     "explorer.openEditors.visible": 0,
     "extensions.ignoreRecommendations": true,
     "files.associations": {
-        "Dockerfile-*": "dockerfile",
+        "Dockerfile-*": "dockerfile"
     },
     "files.exclude": {
         "**/.git/": true,
         "**/.hg": true,
         "**/.svn": true,
         "**/.DS_Store": true,
-        "**/CVS": true,
+        "**/CVS": true
     },
     "files.insertFinalNewline": true,
     "go.formatTool": "goimports",
@@ -28,16 +31,11 @@
     "window.zoomLevel": 0,
     "workbench.activityBar.visible": false,
     "workbench.colorCustomizations": {
-        "[Monokai]": {
+        "[Flatland Monokai]": {
             // AtomOne Light sidebar
-            "editor.background": "#2c2d26",
             "editorError.foreground": "#e65544",
-            "editorIndentGuide.background": "#41413d",
-            "editorIndentGuide.activeBackground": "#6c6c66",
             "editorRuler.foreground": "#41413d",
-            "editorSuggestWidget.background": "#2c2d26",
             "editorWarning.foreground": "#e6db74",
-            "editorWidget.background": "#2c2d26",
             "gitDecoration.addedResourceForeground": "#4ca24a",
             "gitDecoration.conflictingResourceForeground": "#a726a5",
             "gitDecoration.deletedResourceForeground": "#e65544",
@@ -54,26 +52,22 @@
             "list.inactiveSelectionForeground": "#232324",
             "list.focusBackground": "#dbdbdc",
             "list.focusForeground": "#232324",
-            "list.highlightForeground": "#56adbc",
-            "list.warningForeground": "#e65544",
+            "list.highlightForeground": "#3a8693",// "#56adbc",
+            "list.warningForeground": "#232324",
             "sideBar.background": "#eaeaeb",
             "sideBar.foreground": "#383a42",
             "sideBarSectionHeader.background": "#fafafa",
-            "statusBar.background": "#2c2d26",
-            "statusBar.border": "#41413d",
-            "statusBar.foreground": "#90908a",
             "titleBar.activeBackground": "#eaeaeb",
             "titleBar.activeForeground": "#383a42",
             "titleBar.inactiveBackground": "#eaeaeb",
             "titleBar.inactiveForeground": "#383a42"
-        },
+        }
     },
-    "workbench.colorTheme": "Monokai",
+    "workbench.colorTheme": "Flatland Monokai",
     "workbench.editor.limit.enabled": true,
     "workbench.editor.showTabs": false,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.visible": true,
     "workbench.tips.enabled": false,
-    "yaml.validate": false,
-    "editor.fontFamily": "'Menlo for Powerline', Menlo, Monaco, 'Courier New', monospace",
+    "yaml.validate": false
 }
