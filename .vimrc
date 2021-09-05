@@ -1,24 +1,5 @@
 "use Vim default settings
 set nocompatible
-
-"manage plugins with Vundle
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-"plugins
-Plugin 'airblade/vim-gitgutter'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'fatih/vim-go'
-Plugin 'gmarik/Vundle.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-scripts/desertEx'
-Plugin 'rakr/vim-one'
-
-"reenable filetype hinting
-call vundle#end()
 filetype plugin indent on
 
 "display settings
@@ -57,6 +38,8 @@ set noswapfile         "no ~ swap files
 set history=10         "command history
 set mouse=nicr         "enable mouse support
 set autochdir          "chdir to directory of current buffer
+set encoding=UTF-8     "utf-8
+set exrc               "use workspace .vimrc
 
 "ctrlp
 set wildignore+=**/.git/*,*~,*.pid,**/cache/*,**/log/*,**/_build/*,*.beam,**/target/*
@@ -65,8 +48,6 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 let g:ctrlp_prompt_mappings = {
     \ 'PrtInsert("c")': ['<c-v>', '<MiddleMouse>', '<insert>']
 \}
-
-"ctrlp with ripgrep
 if executable('rg')
   set grepprg=rg\ --color=never
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
@@ -79,12 +60,39 @@ let g:netrw_winsize = 25
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_preview = 1
+map <silent> <C-E> :Vexplore<CR>
+cnoreabbrev E Vexplore
+
+"nerdtree
+autocmd VimEnter * NERDTree | wincmd p
+let NERDTreeMinimalUI = 1
 
 "vim-go
 let g:go_highlight_structs = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_operators = 1
+let g:go_def_mode = 'gopls'
+let g:go_info_modei = 'gopls'
+let g:go_gopls_gofumpt = 1
+let g:go_auto_type_info = 1
+autocmd FileType go setlocal omnifunc=go#complete#Complete
+autocmd Filetype go inoremap <buffer> . .<C-x><C-o>
+let g:asyncomplete_auto_completeopt = 0
+
+"omnifunc
+set completeopt=menuone,noinsert,noselect,popup
+set completepopup=border:off,align:menu
+inoremap <expr> <cr> pumvisible() ? (complete_info().selected == -1 ? '<C-y><CR>' : '<C-y>') : '<CR>'
+autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+    \ 'name': 'omni',
+    \ 'allowlist': ['go'],
+    \ 'blocklist': [],
+    \ 'completor': function('asyncomplete#sources#omni#completor'),
+    \ 'config': {
+    \   'show_source_kind': 1,
+    \ },
+\ }))
 
 "colour scheme
 augroup ColorSchemeGroup
@@ -92,7 +100,7 @@ augroup ColorSchemeGroup
     autocmd ColorScheme * hi Normal ctermbg=NONE guibg=NONE
     autocmd ColorScheme * hi NonText ctermbg=NONE guibg=NONE
     autocmd ColorScheme * hi LineNr cterm=NONE gui=NONE
-    "autocmd ColorScheme * hi colorcolumn ctermbg=237 guibg=#15212e
+    autocmd ColorScheme * hi VertSplit ctermbg=254 guibg=#f0f0f0
     autocmd ColorScheme * hi Type guifg=#87afaf gui=bold ctermfg=109 cterm=bold
     autocmd ColorScheme * hi clear SignColumn
     autocmd ColorScheme * hi ExtraWhitespace ctermbg=210 guibg=salmon
@@ -105,10 +113,7 @@ augroup ColorSchemeGroup
 augroup END
 silent! colorscheme one
 set background=light
-
-"netrw
-map <silent> <C-E> :Vexplore<CR>
-cnoreabbrev E Vexplore
+set fillchars+=vert:\ 
 
 "gutter
 nnoremap <leader>git :GitGutterToggle<CR>
