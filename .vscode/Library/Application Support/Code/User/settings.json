@@ -27,8 +27,9 @@
         "**/target": true
     },
     "terminal.integrated.copyOnSelection": true,
-    "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
-    "window.zoomLevel": 0,
+    "terminal.integrated.fontFamily": "Menlo for Powerline, Menlo, Monaco, 'Courier New', monospace",
+    "terminal.integrated.rendererType": "canvas",
+    "terminal.integrated.shell.osx": "/bin/zsh",
     "workbench.activityBar.visible": false,
     "workbench.colorCustomizations": {
         "[Flatland Monokai]": {
@@ -52,7 +53,7 @@
             "list.inactiveSelectionForeground": "#232324",
             "list.focusBackground": "#dbdbdc",
             "list.focusForeground": "#232324",
-            "list.highlightForeground": "#3a8693",// "#56adbc",
+            "list.highlightForeground": "#3a8693",
             "list.warningForeground": "#232324",
             "sideBar.background": "#eaeaeb",
             "sideBar.foreground": "#383a42",
@@ -60,7 +61,10 @@
             "titleBar.activeBackground": "#eaeaeb",
             "titleBar.activeForeground": "#383a42",
             "titleBar.inactiveBackground": "#eaeaeb",
-            "titleBar.inactiveForeground": "#383a42"
+            "titleBar.inactiveForeground": "#383a42",
+            "debugView.stateLabelBackground": "#4ca24a",
+            "debugView.stateLabelForeground": "#eaeaeb",
+            "debugView.valueChangedHighlight": "#e65544"
         }
     },
     "workbench.colorTheme": "Flatland Monokai",
@@ -69,5 +73,7 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.visible": true,
     "workbench.tips.enabled": false,
-    "yaml.validate": false
+    "yaml.validate": false,
+    "editor.insertSpaces": false,
+    "redhat.telemetry.enabled": false
 }
