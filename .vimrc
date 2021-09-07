@@ -69,6 +69,10 @@ let g:go_def_mode = 'gopls'
 let g:go_info_modei = 'gopls'
 let g:go_gopls_gofumpt = 1
 let g:go_auto_type_info = 1
+let g:go_gopls_complete_unimported = 1
+let g:go_imports_mode = "gopls"
+let g:go_imports_autosave = 1
+let g:go_diagnostics_level = 2 "errors and warnings
 autocmd FileType go setlocal omnifunc=go#complete#Complete
 autocmd Filetype go inoremap <buffer> . .<C-x><C-o>
 let g:asyncomplete_auto_completeopt = 0
@@ -118,6 +122,31 @@ silent! colorscheme one
 set background=light
 set fillchars+=vert:\ 
 
+"=====================================================
+"===================== MAPPINGS ======================
+
+"enter into the file's directory
+autocmd BufEnter * silent! lcd %:p:h
+
+"resize the splits to be equal
+autocmd VimResized * wincmd =
+
+"use ; as :
+nnoremap ; :
+
+"map leader
+let mapleader = ","
+
+"centre the cursor
+nnoremap <space> zz
+
+"close all buffers but the current one
+nnoremap <leader>o :only<CR>
+
+"vertical split and move cursor to it
+inoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>w <C-w>v<C-w>l
+
 "gutter
 nnoremap <leader>git :GitGutterToggle<CR>
 nnoremap <leader>num :set invnumber<CR>
@@ -126,15 +155,20 @@ nnoremap <leader>num :set invnumber<CR>
 nmap <silent> <leader>/ :nohlsearch<CR>
 
 "save with sudo
-command! -nargs=0 WriteWithSudo :w !sudo tee % >/dev/null
+command -nargs=0 WriteWithSudo :w !sudo tee % >/dev/null
+command -nargs=0 WW :WriteWithSudo
 nnoremap <leader>ww :WriteWithSudo<CR>
 
+"yank and place with clipboard
+vnoremap <leader>y "*y
+vnoremap <silent> <leader>p "*p
+
 "create current directory
-command! -nargs=0 Mkdir !mkdir -p %:h
+command -nargs=0 Mkdir !mkdir -p %:h
 cnoreabbrev mkdir Mkdir
 
 "trailing whitespace
-command! -nargs=0 RemoveExtraWhitespace :%s/\s\+$//
+command -nargs=0 RemoveExtraWhitespace :%s/\s\+$//
 nnoremap <leader>rw :RemoveExtraWhitespace<CR>
 
 "move a line of text using ALT+[jk]
