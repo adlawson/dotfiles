@@ -13,11 +13,6 @@
 	url = https://github.com/airblade/vim-gitgutter.git
     branch = master
 
-[submodule ".vim/pack/plugins/start/nerdtree"]
-	path = .vim/pack/plugins/start/nerdtree
-	url = https://github.com/preservim/nerdtree.git
-    branch = master
-
 [submodule ".vim/pack/plugins/start/nerdcommenter"]
 	path = .vim/pack/plugins/start/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git

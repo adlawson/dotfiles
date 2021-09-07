@@ -56,16 +56,9 @@ endif
 
 "netrw
 let g:netrw_banner = 0
-let g:netrw_winsize = 25
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_preview = 1
-map <silent> <C-E> :Vexplore<CR>
-cnoreabbrev E Vexplore
-
-"nerdtree
-autocmd VimEnter * NERDTree | wincmd p
-let NERDTreeMinimalUI = 1
+let g:netrw_browse_split = 0 "reuse window
+map <silent> <C-E> :Explore<CR>
+cnoreabbrev E Explore
 
 "vim-go
 let g:go_highlight_structs = 1
@@ -79,6 +72,16 @@ let g:go_auto_type_info = 1
 autocmd FileType go setlocal omnifunc=go#complete#Complete
 autocmd Filetype go inoremap <buffer> . .<C-x><C-o>
 let g:asyncomplete_auto_completeopt = 0
+autocmd FileType go nmap <leader>t <Plug>(go-test)
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
 
 "omnifunc
 set completeopt=menuone,noinsert,noselect,popup
