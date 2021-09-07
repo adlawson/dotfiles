@@ -40,3 +40,6 @@
 [submodule ".vim/pack/plugins/start/asyncomplete-omni.vim"]
 	path = .vim/pack/plugins/start/asyncomplete-omni.vim
 	url = https://github.com/yami-beta/asyncomplete-omni.vim
+[submodule ".vim/pack/plugins/start/flattened"]
+	path = .vim/pack/plugins/start/flattened
+	url = https://github.com/romainl/flattened

@@ -106,9 +106,8 @@ augroup ColorSchemeGroup
     autocmd!
     autocmd ColorScheme * hi Normal ctermbg=NONE guibg=NONE
     autocmd ColorScheme * hi NonText ctermbg=NONE guibg=NONE
-    autocmd ColorScheme * hi LineNr cterm=NONE gui=NONE
-    autocmd ColorScheme * hi VertSplit ctermbg=254 guibg=#f0f0f0
     autocmd ColorScheme * hi Type guifg=#87afaf gui=bold ctermfg=109 cterm=bold
+    autocmd ColorScheme * hi clear LineNr
     autocmd ColorScheme * hi clear SignColumn
     autocmd ColorScheme * hi ExtraWhitespace ctermbg=210 guibg=salmon
     autocmd ColorScheme * hi cursorLine ctermbg=NONE guibg=NONE
@@ -118,8 +117,8 @@ augroup ColorSchemeGroup
     autocmd InsertLeave * match ExtraWhitespace /\s\+$/
     autocmd BufWinLeave * call clearmatches()
 augroup END
-silent! colorscheme one
-set background=light
+set background=dark
+silent! colorscheme flattened_dark
 set fillchars+=vert:\ 
 
 "=====================================================
