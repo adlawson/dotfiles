@@ -1,83 +1,208 @@
-"use Vim default settings
 set nocompatible
 filetype plugin indent on
 
-"display settings
-syntax on
-set nowrap             "disable word wrap
-set colorcolumn=80,120 "columns
-set scrolloff=8        "display 8 lines above/below cursor
-set showmatch          "show matching brace
-set showmode           "show mode in status bar (insert/replace/...)
-set showcmd            "show typed command in status bar
-set ruler              "show cursor position in status bar
-set hlsearch           "highlight search
-set incsearch          "incremental search
-set number             "show line numbers
-set termguicolors      "use theme gui colours rather than cterm
+augroup vimrc
+  autocmd!
+augroup END
 
-"editor settings
-set ignorecase         "case insensitive search
-set smartcase          "case sensitive if uppercase is used
-set smartindent        "auto indenting
-set smarttab           "smart tab handling for indenting
-set expandtab          "spaces rather than tabs
-set tabstop=4          "tabs use 4 spaces
-set shiftwidth=4       "indents use 4 spaces
-set wildmenu           "command autocomplete
-set wildmode=longest:full,full "command autocomplete mode
-set backspace=indent,eol,start "backspace erases previous inserts and autoindent
-set timeoutlen=500     "length of time to wait before <Esc>
-set ttimeoutlen=50     "length of time to wait before <Esc>
+let s:darwin  = has('mac')
+let s:windows = has('win32') || has('win64')
+let mapleader      = ' '
+let maplocalleader = ' '
 
-"system settings
-set hidden             "keep files open in buffer
-set nobackup           "no backup files
-set nowritebackup      "no backup files written
-set noswapfile         "no ~ swap files
-set history=10         "command history
-set mouse=nicr         "enable mouse support
-set autochdir          "chdir to directory of current buffer
-set encoding=UTF-8     "utf-8
-set exrc               "use workspace .vimrc
+" ============================================================================
+" Plugins
+" ============================================================================
 
-"ctrlp
-set wildignore+=**/.git/*,*~,*.pid,**/cache/*,**/log/*,**/_build/*,*.beam,**/target/*
-set wildignore+=**/test/report/*,**/vendor/**/test*,**/node_modules/**/test*
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let g:ctrlp_prompt_mappings = {
-    \ 'PrtInsert("c")': ['<c-v>', '<MiddleMouse>', '<insert>']
-\}
-if executable('rg')
-  set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-  let g:ctrlp_use_caching = 0
+silent! if plug#begin('~/.vim/plugged')
+
+Plug 'editorconfig/editorconfig-vim'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-rooter'
+
+Plug 'preservim/nerdcommenter'
+
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'yami-beta/asyncomplete-omni.vim'
+
+" ----------------------------------------------------------------------------
+" Language support
+" ----------------------------------------------------------------------------
+
+Plug 'fatih/vim-go'
+
+" ----------------------------------------------------------------------------
+" Themes
+" ----------------------------------------------------------------------------
+
+" Solarized
+Plug 'lifepillar/vim-solarized8'
+  let g:solarized_extra_hi_groups = 1
+
+call plug#end()
 endif
 
-"netrw
+" ============================================================================
+" Settings
+" ============================================================================
+
+set exrc                       " Use workspace .vimrc
+set nowrap                     " Disable word wrap
+set colorcolumn=80,120         " Columns
+set scrolloff=8                " Display 8 lines above/below cursor
+set showmatch                  " Show matching brace
+set showmode                   " Show mode in status bar (insert/replace/...)
+set showcmd                    " Show typed command in status bar
+set ruler                      " Show cursor position in status bar
+set hlsearch                   " Highlight search
+set incsearch                  " Incremental search
+set number                     " Show line numbers
+set termguicolors              " Use theme gui colours rather than cterm
+set ignorecase                 " Case insensitive search
+set smartcase                  " Case sensitive if uppercase is used
+set smartindent                " Auto indenting
+set smarttab                   " Smart tab handling for indenting
+set expandtab                  " Spaces rather than tabs
+set tabstop=4                  " Tabs use 4 spaces
+set shiftwidth=4               " Indents use 4 spaces
+set wildmenu                   " Command autocomplete
+set wildmode=longest:full,full " Command autocomplete mode
+set backspace=indent,eol,start " Backspace erases previous inserts
+set timeoutlen=500             " Length of time to wait before <ESC>
+set ttimeoutlen=50             " Length of time to wait before <ESC>
+set hidden                     " Keep files open in buffer
+set nobackup                   " No backup files
+set nowritebackup              " No backup files written
+set noswapfile                 " No ~ swap files
+set history=10                 " Command history
+set mouse=nicr                 " Enable mouse support
+set autochdir                  " Chdir to directory of current buffer
+set encoding=UTF-8             " UTF-8
+set lazyredraw                 " Only redraw if needed or on :redraw
+set fillchars+=vert:\          " Set the vertical split character to <space>
+
+" Clipboard
+" http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
+set clipboard^=unnamed
+set clipboard^=unnamedplus
+
+" File type detection and hard defaults
+augroup FileTypeDetect
+  command! -nargs=* -complete=help Help vertical belowright help <args>
+  autocmd FileType help wincmd L
+
+  autocmd BufNewFile,BufRead *.hcl setf conf
+  autocmd BufRead,BufNewFile *.gotmpl set filetype=gotexttmpl
+  autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
+augroup END
+
+" ----------------------------------------------------------------------------
+" Colours
+" ----------------------------------------------------------------------------
+
+" Syntax highlighting
+syntax enable
+
+" Set color scheme overrides
+augroup ColorSchemeGroup
+  autocmd!
+
+  autocmd ColorScheme * hi Normal ctermbg=NONE guibg=NONE
+  autocmd ColorScheme * hi NonText ctermbg=NONE guibg=NONE
+  autocmd ColorScheme * hi clear LineNr
+  autocmd ColorScheme * hi clear SignColumn
+  autocmd ColorScheme * hi clear cursorLine
+  autocmd ColorScheme * hi link ExtraWhitespace ErrorMsg
+
+  autocmd ColorScheme * match ExtraWhitespace /\s\+$/
+  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+  autocmd BufWinLeave * call clearmatches()
+augroup END
+
+" Light/Dark
+set background=dark
+
+" Solarized
+let g:solarized_termtrans = 1
+let g:solarized_visibility = 'high'
+colorscheme solarized8_flat
+autocmd vimenter * ++nested colorscheme solarized8_flat
+autocmd ColorScheme * hi Terminal ctermbg=235 guibg=#002b36
+
+" ----------------------------------------------------------------------------
+" Behaviour
+" ----------------------------------------------------------------------------
+
+" Enter into directory of the current file
+autocmd BufEnter * silent! lcd %:p:h
+
+" Resize the splits to be equal
+autocmd VimResized * wincmd =
+
+" Netrw
 let g:netrw_banner = 0
 let g:netrw_browse_split = 0 "reuse window
-map <silent> <C-E> :Explore<CR>
-cnoreabbrev E Explore
 
-"vim-go
+" Omnifunc
+set completeopt=menuone,noinsert,noselect,popup
+set completepopup=border:off,align:menu
+inoremap <expr> <cr> pumvisible() ? (complete_info().selected == -1 ? '<C-y><CR>' : '<C-y>') : '<CR>'
+
+" ----------------------------------------------------------------------------
+" Helpers
+" ----------------------------------------------------------------------------
+
+function! s:cmdAlias(src, target)
+  exec 'cnoreabbrev <expr> '.a:src
+    \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:src.'")'
+    \ .'? ("'.a:target.'") : ("'.a:src.'"))'
+endfunction
+
+" ============================================================================
+" Plugin settings
+" ============================================================================
+
+" ----------------------------------------------------------------------------
+" vim-rooter
+" ----------------------------------------------------------------------------
+
+let g:rooter_patterns = ['.git']
+let g:rooter_cd_cmd = 'lcd'
+let g:rooter_silent_chdir = 1
+let g:rooter_manual_only = 1
+
+" ----------------------------------------------------------------------------
+" vim-go
+" ----------------------------------------------------------------------------
+
 let g:go_highlight_structs = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_operators = 1
 let g:go_def_mode = 'gopls'
 let g:go_info_modei = 'gopls'
+let g:go_imports_mode = "gopls"
 let g:go_gopls_gofumpt = 1
 let g:go_auto_type_info = 1
-let g:go_gopls_complete_unimported = 1
-let g:go_imports_mode = "gopls"
 let g:go_imports_autosave = 1
-let g:go_diagnostics_level = 2 "errors and warnings
-autocmd FileType go setlocal omnifunc=go#complete#Complete
-autocmd Filetype go inoremap <buffer> . .<C-x><C-o>
+let g:go_diagnostics_level = 2
+let g:go_gopls_complete_unimported = 1
 let g:asyncomplete_auto_completeopt = 0
-autocmd FileType go nmap <leader>t <Plug>(go-test)
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
+augroup Golang
+  autocmd FileType go setlocal omnifunc=go#complete#Complete
+  autocmd Filetype go inoremap <buffer> . .<C-x><C-o>
+  autocmd FileType go nmap <leader>t <Plug>(go-test)
+  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+augroup END
+
 function! s:build_go_files()
   let l:file = expand('%')
   if l:file =~# '^\f\+_test\.go$'
@@ -87,95 +212,141 @@ function! s:build_go_files()
   endif
 endfunction
 
-"omnifunc
-set completeopt=menuone,noinsert,noselect,popup
-set completepopup=border:off,align:menu
-inoremap <expr> <cr> pumvisible() ? (complete_info().selected == -1 ? '<C-y><CR>' : '<C-y>') : '<CR>'
+" ----------------------------------------------------------------------------
+" fzf
+" ----------------------------------------------------------------------------
+
+let g:fzf_buffers_jump = 1
+let g:fzf_layout = { 'down': '25%' }
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+command! -nargs=* -bang Files call <SID>fzfFiles(<q-args>, <bang>0)
+command! -nargs=* -bang Grep call <SID>fzfGrep(<q-args>, <bang>0)
+command! -nargs=* -bang GitGrep call <SID>fzfGitGrep(<q-args>, <bang>0)
+command! -nargs=* -bang GitFiles call <SID>fzfGitFiles(<q-args>, <bang>0)
+call s:cmdAlias("Rg", "Grep")
+call s:cmdAlias("GGrep", "GitGrep")
+call s:cmdAlias("GFiles", "GitGrep")
+
+" Files search with preview, from the root directory
+function! s:fzfFiles(query, fullscreen)
+  let options = { 'dir': FindRootDirectory() }
+  let options = fzf#vim#with_preview(options, 'right', 'ctrl-/')
+  call fzf#vim#files(a:query, options, a:fullscreen)
+endfunction
+
+" RG with preview, from the root directory
+function! s:fzfGrep(query, fullscreen)
+  let rg_command = '
+    \ rg --column --line-number --no-heading --fixed-strings --smart-case --no-ignore --hidden --color "always"
+    \ -g "!{.git,node_modules,vendor,third_party}/*" %s
+    \ || true'
+  let initial_command = printf(rg_command, shellescape(a:query))
+  let reload_command = printf(rg_command, '{q}')
+  let options =
+  \ { 'dir': FindRootDirectory(),
+    \ 'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command] }
+  let options  = fzf#vim#with_preview(options, 'right', 'ctrl-/')
+  call fzf#vim#grep(initial_command, 1, options, a:fullscreen)
+endfunction
+
+" Git Grep with preview, from the root directory
+function! s:fzfGitGrep(query, fullscreen)
+  let git_grep = 'git grep --line-number -- '.shellescape(a:query)
+  let options = { 'dir': FindRootDirectory() }
+  let options = fzf#vim#with_preview(options, 'right', 'ctrl-/')
+  call fzf#vim#grep(git_grep, 1, options, a:fullscreen)
+endfunction
+
+" Git tracked files search with preview, from the root directory
+function! s:fzfGitFiles(query, fullscreen)
+  let options = { 'dir': FindRootDirectory() }
+  let options = fzf#vim#with_preview(options, 'right', 'ctrl-/')
+  call fzf#vim#gitfiles(a:query, options, a:fullscreen)
+endfunction
+
+" ----------------------------------------------------------------------------
+" asyncomplete
+" ----------------------------------------------------------------------------
+
 autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-    \ 'name': 'omni',
-    \ 'allowlist': ['go'],
-    \ 'blocklist': [],
-    \ 'completor': function('asyncomplete#sources#omni#completor'),
-    \ 'config': {
-    \   'show_source_kind': 1,
-    \ },
+  \ 'name': 'omni',
+  \ 'allowlist': ['go'],
+  \ 'blocklist': [],
+  \ 'completor': function('asyncomplete#sources#omni#completor'),
+  \ 'config': {
+  \   'show_source_kind': 1,
+  \ },
 \ }))
 
-"colour scheme
-augroup ColorSchemeGroup
-    autocmd!
-    autocmd ColorScheme * hi Normal ctermbg=NONE guibg=NONE
-    autocmd ColorScheme * hi NonText ctermbg=NONE guibg=NONE
-    autocmd ColorScheme * hi Type guifg=#87afaf gui=bold ctermfg=109 cterm=bold
-    autocmd ColorScheme * hi clear LineNr
-    autocmd ColorScheme * hi clear SignColumn
-    autocmd ColorScheme * hi ExtraWhitespace ctermbg=210 guibg=salmon
-    autocmd ColorScheme * hi cursorLine ctermbg=NONE guibg=NONE
-    autocmd ColorScheme * match ExtraWhitespace /\s\+$/
-    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-    autocmd BufWinLeave * call clearmatches()
-augroup END
-set background=dark
-silent! colorscheme flattened_dark
-set fillchars+=vert:\ 
+" ============================================================================
+" Keybindings
+" ============================================================================
 
-"=====================================================
-"===================== MAPPINGS ======================
+" Leader should be set before other keybindings
+let mapleader = ','
 
-"enter into the file's directory
-autocmd BufEnter * silent! lcd %:p:h
-
-"resize the splits to be equal
-autocmd VimResized * wincmd =
-
-"use ; as :
+" Save a <SHIFT> and allow ; to be used as :
 nnoremap ; :
 
-"map leader
-let mapleader = ","
+" Movement in insert mode
+inoremap <C-h> <C-o>h
+inoremap <C-l> <C-o>a
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+inoremap <C-^> <C-o><C-^>
 
-"centre the cursor
+" Centre the cursor
 nnoremap <space> zz
 
-"close all buffers but the current one
+" Close all buffers besides the current one
 nnoremap <leader>o :only<CR>
 
-"vertical split and move cursor to it
+" Vertical split and move cursor to it
 inoremap <leader>w <C-w>v<C-w>l
 nnoremap <leader>w <C-w>v<C-w>l
 
-"gutter
-nnoremap <leader>git :GitGutterToggle<CR>
-nnoremap <leader>num :set invnumber<CR>
+" Clear search
+nnoremap <silent> <leader><space> :nohlsearch<CR>
 
-"clear search
-nmap <silent> <leader>/ :nohlsearch<CR>
+" Netrw
+map <silent> <C-E> :Explore<CR>
+cnoreabbrev E Explore
 
-"save with sudo
-command -nargs=0 WriteWithSudo :w !sudo tee % >/dev/null
-command -nargs=0 WW :WriteWithSudo
-nnoremap <leader>ww :WriteWithSudo<CR>
+" FZF
+nnoremap <C-p> :Files<CR>
+nnoremap <C-g> :Grep<CR>
+nnoremap <C-b> :Buffers<CR>
 
-"yank and place with clipboard
-vnoremap <leader>y "*y
-vnoremap <silent> <leader>p "*p
-
-"create current directory
-command -nargs=0 Mkdir !mkdir -p %:h
-cnoreabbrev mkdir Mkdir
-
-"trailing whitespace
-command -nargs=0 RemoveExtraWhitespace :%s/\s\+$//
-nnoremap <leader>rw :RemoveExtraWhitespace<CR>
-
-"move a line of text using ALT+[jk]
-"https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
-"https://stackoverflow.com/questions/5379837/is-it-possible-to-mapping-alt-hjkl-in-insert-mode
-nnoremap ∆ :m .+1<CR>==
-nnoremap ˚ :m .-2<CR>==
-inoremap ∆ <Esc>:m .+1<CR>==gi
-inoremap ˚ <Esc>:m .-2<CR>==gi
-vnoremap ∆ :m '>+1<CR>gv=gv
+" Move a line up/down/left/right
+" https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
+" https://stackoverflow.com/questions/5379837/is-it-possible-to-mapping-alt-hjkl-in-insert-mode
+nnoremap <silent> <C-k> :move-2<cr>
+nnoremap <silent> <C-j> :move+<cr>
+nnoremap <silent> <C-h> <<
+nnoremap <silent> <C-l> >>
+xnoremap <silent> <C-k> :move-2<cr>gv
+xnoremap <silent> <C-j> :move'>+<cr>gv
+xnoremap <silent> <C-h> <gv
+xnoremap <silent> <C-l> >gv
+xnoremap < <gv
+xnoremap > >gv
 vnoremap ˚ :m '<-2<CR>gv=gv
+
