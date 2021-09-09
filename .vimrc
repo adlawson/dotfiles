@@ -131,7 +131,6 @@ set background=dark
 
 " Solarized
 let g:solarized_termtrans = 1
-let g:solarized_visibility = 'high'
 colorscheme solarized8_flat
 autocmd vimenter * ++nested colorscheme solarized8_flat
 autocmd ColorScheme * hi Terminal ctermbg=235 guibg=#002b36
@@ -193,6 +192,7 @@ let g:go_gopls_gofumpt = 1
 let g:go_auto_type_info = 1
 let g:go_imports_autosave = 1
 let g:go_diagnostics_level = 2
+let g:go_metalinter_autosave = 1
 let g:go_gopls_complete_unimported = 1
 let g:asyncomplete_auto_completeopt = 0
 
@@ -312,6 +312,10 @@ inoremap <C-l> <C-o>a
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 inoremap <C-^> <C-o><C-^>
+
+" Movement in omnicomplete
+inoremap <expr> <C-j> ("\<C-n>")
+inoremap <expr> <C-k> ("\<C-p>")
 
 " Centre the cursor
 nnoremap <space> zz
