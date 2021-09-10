@@ -337,7 +337,7 @@ cnoreabbrev E Explore
 " FZF
 nnoremap <C-p> :Files<CR>
 nnoremap <C-g> :Grep<CR>
-nnoremap <C-b> :Buffers<CR>
+nnoremap <ESC>p :Buffers<CR>
 
 " Move a line up/down/left/right
 " https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
