@@ -201,6 +201,7 @@ augroup Golang
   autocmd Filetype go inoremap <buffer> . .<C-x><C-o>
   autocmd FileType go nmap <leader>t <Plug>(go-test)
   autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+  autocmd FileType go nmap <leader>d :GoDef<CR>
 augroup END
 
 function! s:build_go_files()
@@ -330,6 +331,9 @@ nnoremap <leader>w <C-w>v<C-w>l
 " Clear search
 nnoremap <silent> <leader><space> :nohlsearch<CR>
 
+" Toggle soft line break in the current buffer
+nnoremap <leader>b :setlocal wrap! linebreak<CR>
+
 " Netrw
 map <silent> <C-E> :Explore<CR>
 cnoreabbrev E Explore
@@ -337,7 +341,6 @@ cnoreabbrev E Explore
 " FZF
 nnoremap <C-p> :Files<CR>
 nnoremap <C-g> :Grep<CR>
-nnoremap <ESC>p :Buffers<CR>
 
 " Move a line up/down/left/right
 " https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
