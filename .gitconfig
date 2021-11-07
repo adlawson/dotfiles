@@ -16,5 +16,5 @@
 	staged = diff --cached
 [includeIf "gitdir:~/src/github.com/monzo/**"]
     path = ~/src/github.com/monzo/.gitconfig
-[url "ssh://git@github.com/monzo/"]
-	insteadOf = https://github.com/monzo/
+[includeIf "gitdir:~/Projects/polymill/**"]
+    path = ~/Projects/polymill/.gitconfig
