@@ -7,6 +7,8 @@
 	editor = vim
 [diff]
 	noprefix = true
+[push]
+	default = current
 [alias]
 	keep = "!f() { git branch | grep -v "$1" | grep -v '*' | xargs git branch -D; }; f"
 	purge = "!f() { git keep 'master\\|develop\\|release'; }; f"
