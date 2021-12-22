@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+workdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+symlink() {
+  local source="$1" destination="$2"
+  [ ! -e "$destination" ] && ln -s "$PWD/$source" "$destination"
+  [ ! -L "$destination" ] && echo "File at path "$destination" already exists" 1>&2
+}
+
+homelink() {
+  symlink "$workdir/$1" "$HOME/$2"
+}
+
+# Update dotfiles submodules
+git submodule update --init
+
+# Homebrew install
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew bundle
+
+# Install Oh-my-zsh
+ZSH="$HOME/.zsh/.oh-my-zsh" KEEP_ZSHRC="yes" \
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" ""
+
+# Create directories
+mkdir -p "$HOME/.gnupg"
+mkdir -p "$HOME/.ssh"
+mkdir -p "$HOME/Library/Application Support/Code/User"
+
+# Link config to home directory
+homelink "gpg" ".gnupg"
+homelink "gitconfig" ".gitconfig"
+homelink "vim" ".vim"
+homelink "vimrc" ".vimrc"
+homelink "zsh" ".zsh"
+homelink "zshrc" ".zshrc"
+homelink "vscode/keybindings.json" "Library/Application Support/Code/User/keybindings.json"
+homelink "vscode/settings.json" "Library/Application Support/Code/User/settings.json"
+
+# Install vim plugins
+vim +PlugInstall +qall
+

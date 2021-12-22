@@ -1,19 +1,11 @@
 # Dotfiles
 
-<img src="http://stream1.gifsoup.com/view6/1949166/60s-computer-o.gif" alt="Dotfiles" align="right" width=300 />
+Personal dotfiles. No configuration options.
 
-This project is mainly for my benefit. There are no configuration options other
-than those defined in the source.
-
-## Installation
-The installer doesn't do anything clever. It symlinks the project (excluding
-things like `.git` and this README) into the home directory of the current
-user. An error will be raised if the target already exists and isn't a symlink.
-
-```bash
-git clone --recursive https://github.com/adlawson/dotfiles.git &&\
-cd dotfiles &&\
-./install.sh
+```shell
+git clone --recursive https://github.com/adlawson/dotfiles.git
+cd dotfiles
+./install
 ```
 
 ## License
