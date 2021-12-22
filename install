@@ -14,13 +14,18 @@ homelink() {
 }
 
 # Update dotfiles submodules
+echo "⏳ Updating submodules"
 git submodule update --init
 
 # Homebrew install
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo "⏳ Installing Homebrew"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo "⏳ Installing Brewfile packages"
+echo "⚠️  This may take some time"
 brew bundle
 
 # Install Oh-my-zsh
+echo "⏳ Installing Oh-my-zsh"
 ZSH="$HOME/.zsh/.oh-my-zsh" KEEP_ZSHRC="yes" \
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" ""
 
@@ -30,6 +35,7 @@ mkdir -p "$HOME/.ssh"
 mkdir -p "$HOME/Library/Application Support/Code/User"
 
 # Link config to home directory
+echo "⏳ Creating symlinks"
 homelink "gpg" ".gnupg"
 homelink "gitconfig" ".gitconfig"
 homelink "vim" ".vim"
@@ -40,5 +46,7 @@ homelink "vscode/keybindings.json" "Library/Application Support/Code/User/keybin
 homelink "vscode/settings.json" "Library/Application Support/Code/User/settings.json"
 
 # Install vim plugins
+echo "⏳ Installing vim plugins"
 vim +PlugInstall +qall
 
+echo "✅ Done"
