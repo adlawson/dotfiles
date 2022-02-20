@@ -234,14 +234,20 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+if executable('fd')
+  let $FZF_DEFAULT_COMMAND = 'fd --type f --hidden --follow --exclude .git'
+endif
+
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 command! -nargs=* -bang Files call <SID>fzfFiles(<q-args>, <bang>0)
+command! -nargs=* -bang AllFiles call <SID>fzfAllFiles(<q-args>, <bang>0)
 command! -nargs=* -bang Grep call <SID>fzfGrep(<q-args>, <bang>0)
 command! -nargs=* -bang GitGrep call <SID>fzfGitGrep(<q-args>, <bang>0)
 command! -nargs=* -bang GitFiles call <SID>fzfGitFiles(<q-args>, <bang>0)
+call s:cmdAlias("All", "AllFiles")
 call s:cmdAlias("Rg", "Grep")
 call s:cmdAlias("GGrep", "GitGrep")
 call s:cmdAlias("GFiles", "GitGrep")
@@ -251,6 +257,14 @@ function! s:fzfFiles(query, fullscreen)
   let options = { 'dir': FindRootDirectory() }
   let options = fzf#vim#with_preview(options, 'right', 'ctrl-/')
   call fzf#vim#files(a:query, options, a:fullscreen)
+endfunction
+
+" All files with a search preview, from the root directory
+function! s:fzfAllFiles(query, fullscreen)
+  let fd_command = 'fd --type f --hidden --follow --exclude .git --no-ignore . '.expand(a:query)
+  let options = { 'dir': FindRootDirectory(), 'source': fd_command }
+  let options = fzf#vim#with_preview(options, 'right', 'ctrl-/')
+  call fzf#run(fzf#wrap(options, a:fullscreen))
 endfunction
 
 " RG with preview, from the root directory
