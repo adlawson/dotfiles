@@ -32,10 +32,6 @@ brew "vim"
 tap  "homebrew/cask-fonts"
 cask "font-menlo-for-powerline"
 
-# getdbt.com
-tap  "dbt-labs/dbt"
-brew "dbt"
-
 # keys.pub
 tap  "keys-pub/tap"
 brew "keys"
