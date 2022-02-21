@@ -30,11 +30,18 @@ Plug 'preservim/nerdcommenter'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'yami-beta/asyncomplete-omni.vim'
 
+Plug 'dense-analysis/ale'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'npm install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
+
 " ----------------------------------------------------------------------------
 " Language support
 " ----------------------------------------------------------------------------
 
 Plug 'fatih/vim-go'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 " ----------------------------------------------------------------------------
 " Themes
@@ -91,14 +98,10 @@ set fillchars+=vert:\          " Set the vertical split character to <space>
 set clipboard^=unnamed
 set clipboard^=unnamedplus
 
-" File type detection and hard defaults
-augroup FileTypeDetect
+" File type detection
+augroup HelpFileType
   command! -nargs=* -complete=help Help vertical belowright help <args>
   autocmd FileType help wincmd L
-
-  autocmd BufNewFile,BufRead *.hcl setf conf
-  autocmd BufRead,BufNewFile *.gotmpl set filetype=gotexttmpl
-  autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
 augroup END
 
 " ----------------------------------------------------------------------------
@@ -178,40 +181,22 @@ let g:rooter_silent_chdir = 1
 let g:rooter_manual_only = 1
 
 " ----------------------------------------------------------------------------
-" vim-go
+" vim-prettier
 " ----------------------------------------------------------------------------
 
-let g:go_highlight_structs = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_operators = 1
-let g:go_def_mode = 'gopls'
-let g:go_info_modei = 'gopls'
-let g:go_imports_mode = "gopls"
-let g:go_gopls_gofumpt = 1
-let g:go_auto_type_info = 1
-let g:go_imports_autosave = 1
-let g:go_diagnostics_level = 2
-let g:go_metalinter_autosave = 1
-let g:go_gopls_complete_unimported = 1
-let g:asyncomplete_auto_completeopt = 0
+let g:prettier#exec_cmd_async = 1
+let g:prettier#quickfix_auto_focus = 0
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#autoformat_config_present = 1
 
-augroup Golang
-  autocmd FileType go setlocal omnifunc=go#complete#Complete
-  autocmd Filetype go inoremap <buffer> . .<C-x><C-o>
-  autocmd FileType go nmap <leader>t <Plug>(go-test)
-  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-  autocmd FileType go nmap <leader>d :GoDef<CR>
-augroup END
+" ----------------------------------------------------------------------------
+" ale
+" ----------------------------------------------------------------------------
 
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
+let g:ale_completion_autoimport = 1
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+  \ 'javascript': ['eslint'] }
 
 " ----------------------------------------------------------------------------
 " fzf
@@ -296,20 +281,6 @@ function! s:fzfGitFiles(query, fullscreen)
   let options = fzf#vim#with_preview(options, 'right', 'ctrl-/')
   call fzf#vim#gitfiles(a:query, options, a:fullscreen)
 endfunction
-
-" ----------------------------------------------------------------------------
-" asyncomplete
-" ----------------------------------------------------------------------------
-
-autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-  \ 'name': 'omni',
-  \ 'allowlist': ['go'],
-  \ 'blocklist': [],
-  \ 'completor': function('asyncomplete#sources#omni#completor'),
-  \ 'config': {
-  \   'show_source_kind': 1,
-  \ },
-\ }))
 
 " ============================================================================
 " Keybindings
