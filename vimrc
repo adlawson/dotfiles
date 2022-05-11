@@ -88,6 +88,7 @@ set hidden                     " Keep files open in buffer
 set nobackup                   " No backup files
 set nowritebackup              " No backup files written
 set noswapfile                 " No ~ swap files
+set autoread                   " Reload file if changed outside of vim
 set history=10                 " Command history
 set mouse=nicr                 " Enable mouse support
 set autochdir                  " Chdir to directory of current buffer
@@ -326,17 +327,21 @@ nnoremap <space> zz
 nnoremap <leader>o :only<CR>
 
 " Vertical split and move cursor to it
-inoremap <leader>w <C-w>v<C-w>l
-nnoremap <leader>w <C-w>v<C-w>l
+"inoremap <leader>w <C-w>v<C-w>l
+"nnoremap <leader>w <C-w>v<C-w>l
+" Vertical split without moving cursor to it
+inoremap <leader>w <C-w>v
+nnoremap <leader>w <C-w>v
 
 " Clear search
 nnoremap <silent> <leader><space> :nohlsearch<CR>
 
-" Toggle soft line break in the current buffer
-nnoremap <leader>b :setlocal wrap! linebreak<CR>
+" Paste from yank register
+nnoremap <leader>p "0p
+nnoremap <leader>P h"0p
 
 " Netrw
-map <silent> <C-E> :Explore<CR>
+"map <silent> <C-E> :Explore<CR>
 cnoreabbrev E Explore
 
 " FZF
