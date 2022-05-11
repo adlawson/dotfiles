@@ -96,16 +96,38 @@ set encoding=UTF-8             " UTF-8
 set lazyredraw                 " Only redraw if needed or on :redraw
 set fillchars+=vert:\          " Set the vertical split character to <space>
 
-" Clipboard
-" http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
-set clipboard^=unnamed
-set clipboard^=unnamedplus
-
 " File type detection
 augroup HelpFileType
   command! -nargs=* -complete=help Help vertical belowright help <args>
   autocmd FileType help wincmd L
 augroup END
+
+" ----------------------------------------------------------------------------
+" Clipboard
+" ----------------------------------------------------------------------------
+
+" http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
+" https://github.com/pazams/d-is-for-delete
+
+" Delete with d and cut with <leader>d
+nnoremap x "_x
+nnoremap X "_X
+nnoremap d "_d
+nnoremap D "_D
+vnoremap d "_d
+
+if has('unnamedplus')
+  set clipboard^=unnamed
+  set clipboard^=unnamedplus
+  nnoremap <leader>d "+d
+  nnoremap <leader>D "+D
+  vnoremap <leader>d "+d
+else
+  set clipboard=unnamed
+  nnoremap <leader>d "*d
+  nnoremap <leader>D "*D
+  vnoremap <leader>d "*d
+endif
 
 " ----------------------------------------------------------------------------
 " Colours
@@ -335,10 +357,6 @@ nnoremap <leader>w <C-w>v
 
 " Clear search
 nnoremap <silent> <leader><space> :nohlsearch<CR>
-
-" Paste from yank register
-nnoremap <leader>p "0p
-nnoremap <leader>P h"0p
 
 " Netrw
 "map <silent> <C-E> :Explore<CR>
