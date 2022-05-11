@@ -17,6 +17,7 @@ let maplocalleader = ' '
 silent! if plug#begin('~/.vim/plugged')
 
 Plug 'editorconfig/editorconfig-vim'
+Plug 'sheerun/vim-polyglot'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
@@ -39,7 +40,7 @@ Plug 'prettier/vim-prettier', {
 " Language support
 " ----------------------------------------------------------------------------
 
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 
@@ -48,6 +49,7 @@ Plug 'peitalin/vim-jsx-typescript'
 " ----------------------------------------------------------------------------
 
 " Solarized
+Plug 'sainnhe/sonokai'
 Plug 'lifepillar/vim-solarized8'
   let g:solarized_extra_hi_groups = 1
 
@@ -133,9 +135,18 @@ augroup END
 set background=dark
 
 " Solarized
-let g:solarized_termtrans = 1
-colorscheme solarized8_flat
-autocmd vimenter * ++nested colorscheme solarized8_flat
+"let g:solarized_termtrans = 1
+"colorscheme solarized8_flat
+"autocmd vimenter * ++nested colorscheme solarized8_flat
+"autocmd ColorScheme * hi Terminal ctermbg=235 guibg=#002b36
+
+" Sonokai
+let g:sonokai_style = 'maia'
+let g:sonokai_better_performance = 1
+let g:sonokai_transparent_background = 1
+
+colorscheme sonokai
+autocmd vimenter * ++nested colorscheme sonokai
 autocmd ColorScheme * hi Terminal ctermbg=235 guibg=#002b36
 
 " ----------------------------------------------------------------------------
@@ -172,6 +183,11 @@ endfunction
 " ============================================================================
 
 " ----------------------------------------------------------------------------
+" vim-polyglot
+" ----------------------------------------------------------------------------
+let g:polyglot_disabled = ['autoindent', 'sensible']
+
+" ----------------------------------------------------------------------------
 " vim-rooter
 " ----------------------------------------------------------------------------
 
@@ -204,8 +220,8 @@ let g:ale_linters = {
 
 let g:fzf_buffers_jump = 1
 let g:fzf_layout = { 'down': '25%' }
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
+let g:fzf_colors = {
+  \ 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
   \ 'hl':      ['fg', 'Comment'],
   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
