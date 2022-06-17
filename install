@@ -30,6 +30,7 @@ ZSH="$HOME/.zsh/.oh-my-zsh" KEEP_ZSHRC="yes" \
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" ""
 
 # Create directories
+mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.gnupg"
 mkdir -p "$HOME/.ssh"
 mkdir -p "$HOME/Library/Application Support/Code/User"
@@ -38,6 +39,8 @@ mkdir -p "$HOME/Library/Application Support/Code/User"
 echo "⏳ Creating symlinks"
 homelink "gpg" ".gnupg"
 homelink "gitconfig" ".gitconfig"
+homelink "kitty" ".config"
+homelink "nvim" ".config"
 homelink "vim" ".vim"
 homelink "vimrc" ".vimrc"
 homelink "zsh" ".zsh"
