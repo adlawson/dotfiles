@@ -121,13 +121,12 @@ autocmd BufEnter * silent! lcd %:p:h " chdir to current file
 autocmd VimResized * wincmd =        " equal splits
 autocmd FileType help wincmd L       " help splits vertically
 autocmd FileType qf setlocal wrap    " quickfix soft wrap
+autocmd FileType qf nnoremap <silent> <buffer> <cr> <cr>:cclose<cr>
 
 let g:netrw_banner = 0
 let g:netrw_browse_split = 0 "reuse window
 
-" autocomplete popup menu completes on <cr>
 set completeopt=menuone,noinsert,noselect
-let g:float_preview#docked = 0
 inoremap <expr> <cr> pumvisible() ? (complete_info().selected == -1 ? '<c-y><cr>' : '<c-y>') : '<cr>'
 
 " ============================================================================
@@ -169,72 +168,6 @@ command! -nargs=* -bang GitGrep call <sid>fzf_gitGrep(<q-args>, <bang>0)
 command! -nargs=* -bang GitFiles call <sid>fzf_gitFiles(<q-args>, <bang>0)
 
 " ----------------------------------------------------------------------------
-" nvim-cmp
-" ----------------------------------------------------------------------------
-
-if has('nvim')
-lua <<EOF
-  local cmp = require "cmp"
-  local has_words_before = function()
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-  end
-
-  cmp.setup({
-    sources = {
-      { name = 'nvim_lsp' },
-      { name = 'buffer' },
-    },
-    completion = {
-      completeopt = 'menu,menuone,noinsert',
-    },
-    mapping = {
-      ['<down>'] = cmp.mapping.scroll_docs(-4),
-      ['<up>'] = cmp.mapping.scroll_docs(4),
-      ['<c-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
-      ['<c-j>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
-      ["<tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end, { "i", "s" }),
-      ['<esc>'] = cmp.mapping.close(),
-      ['<cr>'] = cmp.mapping.confirm({ select = false }),
-    },
-  })
-
-  vim.api.nvim_create_autocmd({"TextChangedI", "TextChangedP"}, {
-    callback = function()
-      local _, col = vim.api.nvim_win_get_cursor(0)
-      local cursor = vim.api.nvim_get_current_line()[col]
-      if foo and not string.match(cursor, '^\\w$') and cmp.visible() then
-        cmp.close()
-      end
-    end,
-    pattern = "*",
-  })
-EOF
-endif
-
-" ----------------------------------------------------------------------------
-" trouble
-" ----------------------------------------------------------------------------
-
-if has('nvim')
-lua << EOF
-  require("trouble").setup {
-    auto_open = true,
-    auto_close = true,
-    icons = false,
-  }
-EOF
-endif
-
-" ----------------------------------------------------------------------------
 " vim-rooter
 " ----------------------------------------------------------------------------
 
@@ -249,6 +182,7 @@ let g:rooter_manual_only = 1
 
 " leader needs to be set before other bindings
 let mapleader = ','
+let maplocalleader = ','
 
 " save a <shift> and allow ; to be used as :
 nnoremap ; :
@@ -270,12 +204,11 @@ nnoremap <space> zz
 " close all buffers besides the current one
 nnoremap <leader>o :only<cr>
 
-" vertical split and move cursor to it
-" inoremap <leader>w <c-w>v<c-w>l
-" nnoremap <leader>w <c-w>v<c-w>l
-" vertical split without moving cursor to it
-inoremap <leader>w <c-w>v
-nnoremap <leader>w <c-w>v
+" vertical split
+inoremap <leader>w  <c-w>v
+nnoremap <leader>w  <c-w>v
+inoremap <leader>ww <c-w>v<c-w>l
+nnoremap <leader>ww <c-w>v<c-w>l
 
 " clear search
 nnoremap <silent> <leader><space> :nohlsearch<cr>
@@ -284,9 +217,10 @@ nnoremap <silent> <leader><space> :nohlsearch<cr>
 cnoreabbrev E Explore
 
 " fzf
-nnoremap <c-g> :Grep<cr>
-nnoremap <c-p> :Files<cr>
-nnoremap <c-t> :Buffers<cr>
+nnoremap <silent> <c-p> :Files<cr>
+nnoremap <silent> <leader>pg :Grep<cr>
+nnoremap <silent> <leader>pf :Files<cr>
+nnoremap <silent> <leader>pb :Buffers<cr>
 
 " move a line up/down/left/right
 " https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
@@ -312,92 +246,30 @@ vnoremap ˚ :m '<-2<cr>gv=gv
 nnoremap x "_x
 nnoremap X "_X
 nnoremap c "_c
+nnoremap C "_C
 nnoremap d "_d
 nnoremap D "_D
 vnoremap d "_d
+vnoremap D "_D
+nnoremap s "_s
+nnoremap S "_S
 
-if has('unnamedplus')
-  set clipboard^=unnamed
-  set clipboard^=unnamedplus
-  nnoremap <leader>d "+d
-  nnoremap <leader>D "+D
-  vnoremap <leader>d "+d
-else
-  set clipboard=unnamed
-  nnoremap <leader>d "*d
-  nnoremap <leader>D "*D
-  vnoremap <leader>d "*d
+set clipboard^=unnamed
+set clipboard^=unnamedplus
+nnoremap <leader>d "+d
+nnoremap <leader>D "+D
+vnoremap <leader>d "+d
+vnoremap <leader>D "+D
+
+" ============================================================================
+" NeoVim Lua
+" ============================================================================
+
+if has('nvim')
+  lua require('cmp-config')
+  lua require('lsp-config')
+  lua require('trouble-config')
 endif
-
-" ============================================================================
-" Languages
-" ============================================================================
-
-" ----------------------------------------------------------------------------
-" go
-" ----------------------------------------------------------------------------
-
-lua <<EOF
-  lspconfig = require "lspconfig"
-  util = require "lspconfig/util"
-
-  lspconfig.gopls.setup {
-    cmd = {"gopls", "serve"},
-    filetypes = {"go", "gomod", "gohtmltmpl", "gotexttmpl"},
-    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
-    memoryMode = "DegradeClosed",
-    settings = {
-      gopls = {
-        analyses = {
-          fieldalignment = true,
-          nilness = true,
-          unusedparams = true,
-          unusedwrite = true,
-        },
-        staticcheck = true,
-        expandWorkspaceToModule = false,
-      },
-    },
-    init_options = {
-      codelenses = {
-        generate = true,
-        gc_details = true,
-        test = true,
-        tidy = true,
-      },
-    },
-  }
-
-  vim.diagnostic.config({
-    update_in_insert = false,
-  })
-
-  function OrgImports(wait_ms)
-    local params = vim.lsp.util.make_range_params()
-    params.context = {only = {"source.organizeImports"}}
-    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
-    for _, res in pairs(result or {}) do
-      for _, r in pairs(res.result or {}) do
-        if r.edit then
-          vim.lsp.util.apply_workspace_edit(r.edit, "UTF-8")
-        else
-          vim.lsp.buf.execute_command(r.command)
-        end
-      end
-    end
-  end
-
-  local nullls = require "null-ls"
-  nullls.setup({
-    sources = {
-      nullls.builtins.diagnostics.golangci_lint,
-    },
-})
-EOF
-
-autocmd BufWritePre *.go lua OrgImports(1000)
-autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)
-autocmd FileType go setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 " ============================================================================
 " Functions
