@@ -12,7 +12,7 @@ vim.diagnostic.config({
   update_in_insert = false,
 })
 
-local attach_keymap = function(client, bufnr)
+local function on_attach_keymap(client, bufnr)
   local bufopts = { noremap=true, silent=true }
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
@@ -24,7 +24,6 @@ local attach_keymap = function(client, bufnr)
   buf_set_keymap('n', '<localleader>fe', '<cmd>lua vim.lsp.diagnostic.open_float()<cr>', bufopts)
   buf_set_keymap('n', '<localleader>f[', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', bufopts)
   buf_set_keymap('n', '<localleader>f]', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', bufopts)
-
 end
 
 -- ----------------------------------------------------------------------------
@@ -32,13 +31,7 @@ end
 -- ----------------------------------------------------------------------------
 
 lsp_config.gopls.setup((function()
-  local config = vim.g.gopls or {}
-  local root_dir = config.root_dir
-  if not root_dir then
-    root_dir = lsp_util.root_pattern('go.work', 'go.mod', ',git', 'main.go')
-  end
-
-  local organize_imports = function()
+  local function organize_imports()
     local params = vim.lsp.util.make_range_params()
     params.context = {only = {"source.organizeImports"}}
     local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
@@ -54,7 +47,8 @@ lsp_config.gopls.setup((function()
     end
   end
 
-  local on_attach = function(client, bufnr)
+  local function on_attach(client, bufnr)
+    on_attach_keymap(client, bufnr)
     if client.supports_method("textDocument/formatting") then
       local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -64,24 +58,29 @@ lsp_config.gopls.setup((function()
         callback = organize_imports,
       })
     end
-    attach_keymap(client, bufnr)
   end
 
   return {
-    cmd = {'gopls', 'serve'},
+    cmd = {'gopls', '-remote=auto', 'serve'},
     filetypes = {'go', 'gomod', 'gohtmltmpl', 'gotexttmpl'},
     root_dir = root_dir,
+    root_dir = lsp_util.root_pattern(unpack(vim.g.go_gopls_root_dir or {
+      'go.work',
+      'go.mod',
+      ',git',
+      'main.go',
+    })),
     on_attach = on_attach,
     settings = {
-      gopls = {
+      gopls = vim.g.go_gopls_settings or {
         analyses = {
           fieldalignment = true,
           nilness = true,
           unusedparams = true,
           unusedwrite = true,
         },
-        staticcheck = config.staticcheck,
-        expandWorkspaceToModule = config.expand_workspace_to_module,
+        staticcheck = true,
+        expandWorkspaceToModule = true,
         memoryMode = 'DegradeClosed',
       },
     },
