@@ -20,6 +20,7 @@ let g:polyglot_disabled = ['autoindent', 'sensible'] " before plugin
 Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'embear/vim-localvimrc'
 Plug 'folke/trouble.nvim'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -74,6 +75,7 @@ set nowritebackup               " no backup files written
 set number                      " show line numbers
 set ruler                       " show cursor position in status bar
 set scrolloff=8                 " display 8 lines above/below cursor
+set secure                      " secure exrc
 set shiftwidth=4                " indents use 4 spaces
 set showmatch                   " show matching brace
 set showmode                    " show mode in status bar (insert/replace/...)
@@ -168,7 +170,13 @@ command! -nargs=* -bang GitGrep call <sid>fzf_gitGrep(<q-args>, <bang>0)
 command! -nargs=* -bang GitFiles call <sid>fzf_gitFiles(<q-args>, <bang>0)
 
 " ----------------------------------------------------------------------------
-" vim-rooter
+" localvimrc
+" ----------------------------------------------------------------------------
+
+let g:localvimrc_name = ['.vimrc', '.nvimrc']
+
+" ----------------------------------------------------------------------------
+" rooter
 " ----------------------------------------------------------------------------
 
 let g:rooter_patterns = ['.git', '.editorconfig', 'go.work']
