@@ -12,7 +12,20 @@ vim.diagnostic.config({
   update_in_insert = false,
 })
 
-local function on_attach_keymap(client, bufnr)
+local function common_formatting(client, bufnr)
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.formatting_sync()
+      end,
+    })
+  end
+end
+
+local function common_keymap(client, bufnr)
   local bufopts = { noremap=true, silent=true }
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
@@ -24,6 +37,11 @@ local function on_attach_keymap(client, bufnr)
   buf_set_keymap('n', '<localleader>fe', '<cmd>lua vim.lsp.diagnostic.open_float()<cr>', bufopts)
   buf_set_keymap('n', '<localleader>f[', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', bufopts)
   buf_set_keymap('n', '<localleader>f]', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', bufopts)
+end
+
+local function common_on_attach(client, bufnr)
+    common_keymap(client, bufnr)
+    common_formatting(client, bufnr)
 end
 
 -- ----------------------------------------------------------------------------
@@ -48,7 +66,7 @@ lsp_config.gopls.setup((function()
   end
 
   local function on_attach(client, bufnr)
-    on_attach_keymap(client, bufnr)
+    common_on_attach(client, bufnr)
     if client.supports_method("textDocument/formatting") then
       local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })

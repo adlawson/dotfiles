@@ -174,6 +174,7 @@ command! -nargs=* -bang GitFiles call <sid>fzf_gitFiles(<q-args>, <bang>0)
 " ----------------------------------------------------------------------------
 
 let g:localvimrc_name = ['.vimrc', '.nvimrc']
+let g:localvimrc_file_directory_only = 1
 
 " ----------------------------------------------------------------------------
 " rooter
