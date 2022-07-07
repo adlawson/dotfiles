@@ -1,79 +1,33 @@
 {
-    "breadcrumbs.enabled": true,
-    "diffEditor.ignoreTrimWhitespace": false,
-    "editor.codeActionsOnSave": {},
-    "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 14,
     "editor.minimap.enabled": false,
-    "editor.multiCursorModifier": "ctrlCmd",
-    "editor.rulers": [80, 120],
-    "explorer.autoReveal": true,
-    "explorer.openEditors.visible": 0,
-    "extensions.ignoreRecommendations": true,
-    "files.associations": {
-        "Dockerfile-*": "dockerfile"
-    },
-    "files.exclude": {
-        "**/.git/": true,
-        "**/.hg": true,
-        "**/.svn": true,
-        "**/.DS_Store": true,
-        "**/CVS": true
-    },
-    "files.insertFinalNewline": true,
-    "go.formatTool": "goimports",
-    "search.exclude": {
-        "**/bower_components": true,
-        "**/node_modules": true,
-        "**/target": true
-    },
+    "editor.rulers": [ 80, 120 ],
+    "files.associations": { "Dockerfile-*" : "dockerfile" },
+    "go.toolsManagement.autoUpdate": false,
     "terminal.integrated.copyOnSelection": true,
-    "terminal.integrated.fontFamily": "Menlo for Powerline, Menlo, Monaco, 'Courier New', monospace",
-    "terminal.integrated.rendererType": "canvas",
-    "terminal.integrated.shell.osx": "/bin/zsh",
+    "terminal.integrated.fontFamily": "Menlo for Powerline, Menlo",
+    "terminal.integrated.fontSize": 14,
+    "vim.leader": ",",
+    "vim.insertModeKeyBindings": [
+        { "before" : ["<c-j>"], "commands" : ["cursorDown"], "when" : "textInputFocus", "silent" : true },
+        { "before" : ["<c-k>"], "commands" : ["cursorUp"], "when" : "textInputFocus", "silent" : true }
+    ],
+    "vim.normalModeKeyBindings": [
+        { "before" : [";"], "after" : [":"] },
+        { "before" : ["g", "r"], "commands" : ["editor.action.goToReferences"], "when" : "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor", "silent" : "true" },
+        { "before" : ["<c-j>"], "commands" : ["editor.action.moveLinesDownAction"], "silent" : true },
+        { "before" : ["<c-k>"], "commands" : ["editor.action.moveLinesUpAction"], "silent" : true },
+        { "before" : ["<leader>", "w", "w"], "commands" : ["workbench.action.splitEditorRight"], "silent" : true }
+    ],
+    "vim.visualModeKeyBindings": [
+        { "before" : ["<c-j>"], "commands" : ["editor.action.moveLinesDownAction"], "silent" : true },
+        { "before" : ["<c-k>"], "commands" : ["editor.action.moveLinesUpAction"], "silent" : true }
+    ],
+    "vim.useSystemClipboard": true,
+    "window.titleBarStyle": "native",
     "workbench.activityBar.visible": false,
-    "workbench.colorCustomizations": {
-        "[Flatland Monokai]": {
-            // AtomOne Light sidebar
-            "editorError.foreground": "#e65544",
-            "editorRuler.foreground": "#41413d",
-            "editorWarning.foreground": "#e6db74",
-            "gitDecoration.addedResourceForeground": "#4ca24a",
-            "gitDecoration.conflictingResourceForeground": "#a726a5",
-            "gitDecoration.deletedResourceForeground": "#e65544",
-            "gitDecoration.modifiedResourceForeground": "#3c74f5",
-            "gitDecoration.untrackedResourceForeground": "#4ca24a",
-            "editorSuggestWidget.selectedBackground": "#dbdde0",
-            "list.activeSelectionBackground": "#dbdbdc",
-            "list.activeSelectionForeground": "#232324",
-            "list.dropBackground": "#dbdde0",
-            "list.errorForeground": "#e65544",
-            "list.hoverBackground": "#dbdbdc",
-            "list.hoverForeground": "#383a42",
-            "list.inactiveSelectionBackground": "#dbdbdc",
-            "list.inactiveSelectionForeground": "#232324",
-            "list.focusBackground": "#dbdbdc",
-            "list.focusForeground": "#232324",
-            "list.highlightForeground": "#3a8693",
-            "list.warningForeground": "#232324",
-            "sideBar.background": "#eaeaeb",
-            "sideBar.foreground": "#383a42",
-            "sideBarSectionHeader.background": "#fafafa",
-            "titleBar.activeBackground": "#eaeaeb",
-            "titleBar.activeForeground": "#383a42",
-            "titleBar.inactiveBackground": "#eaeaeb",
-            "titleBar.inactiveForeground": "#383a42",
-            "debugView.stateLabelBackground": "#4ca24a",
-            "debugView.stateLabelForeground": "#eaeaeb",
-            "debugView.valueChangedHighlight": "#e65544"
-        }
-    },
-    "workbench.colorTheme": "Flatland Monokai",
+    "workbench.colorTheme": "Sonokai Maia",
+    "workbench.layoutControl.enabled": false,
     "workbench.editor.limit.enabled": true,
-    "workbench.editor.showTabs": false,
-    "workbench.startupEditor": "newUntitledFile",
-    "workbench.statusBar.visible": true,
-    "workbench.tips.enabled": false,
-    "yaml.validate": false,
-    "editor.insertSpaces": false,
-    "redhat.telemetry.enabled": false
+    "workbench.editor.showTabs": false
 }
