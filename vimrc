@@ -15,35 +15,9 @@ let maplocalleader = ' '
 
 silent! if plug#begin('~/.vim/plugged')
 
-let g:polyglot_disabled = ['autoindent', 'sensible'] " before plugin
-
-Plug 'airblade/vim-gitgutter'
-Plug 'airblade/vim-rooter'
-Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'peitalin/vim-jsx-typescript'
 Plug 'preservim/nerdcommenter'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'npm install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-fugitive'
-Plug 'yami-beta/asyncomplete-omni.vim'
-
-" ----------------------------------------------------------------------------
-" Themes
-" ----------------------------------------------------------------------------
-
-Plug 'sainnhe/sonokai'
-
-" ----------------------------------------------------------------------------
-" End
-" ----------------------------------------------------------------------------
+Plug 'lifepillar/vim-solarized8'
 
 call plug#end()
 endif
@@ -59,7 +33,6 @@ set colorcolumn=80,120          " columns
 set directory^=$HOME/.vim/tmp// " swap files under home directory
 set encoding=UTF-8              " UTF-8 encoding
 set expandtab                   " spaces rather than tabs
-set exrc                        " use workspace .vimrc
 set fillchars+=vert:\           " set the vertical split character to <space>
 set hidden                      " keep files open in buffer
 set history=10                  " command history
@@ -94,11 +67,11 @@ set wildmode=longest:full,full  " command autocomplete mode
 " ----------------------------------------------------------------------------
 
 syntax enable
-set background=dark
+set background=light
 
 augroup ExtraWhitespaceGroup
   autocmd!
-  autocmd ColorScheme * hi link ExtraWhitespace TSDanger "ErrorMsg
+  autocmd ColorScheme * hi link ExtraWhitespace ErrorMsg
   autocmd ColorScheme * match ExtraWhitespace /\s\+$/
   autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
   autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
@@ -106,11 +79,9 @@ augroup ExtraWhitespaceGroup
   autocmd BufWinLeave * call clearmatches()
 augroup END
 
-let g:sonokai_style = 'maia'
-let g:sonokai_better_performance = 1
-let g:sonokai_transparent_background = 1
-colorscheme sonokai
-autocmd VimEnter * ++nested colorscheme sonokai
+let g:solarized_termtrans = 1
+colorscheme solarized8_flat
+autocmd VimEnter * ++nested colorscheme solarized8_flat
 autocmd ColorScheme * hi Terminal ctermbg=235 guibg=#002b36
 
 " ----------------------------------------------------------------------------
@@ -124,76 +95,6 @@ autocmd FileType qf setlocal wrap    " quickfix soft wrap
 
 let g:netrw_banner = 0
 let g:netrw_browse_split = 0 "reuse window
-
-" autocomplete popup menu completes on <cr>
-set completeopt=menuone,noinsert,noselect,popup
-set completepopup=border:off,align:menu
-inoremap <expr> <cr> pumvisible() ? (complete_info().selected == -1 ? '<c-y><cr>' : '<c-y>') : '<cr>'
-
-" ============================================================================
-" Plugin settings
-" ============================================================================
-
-" ----------------------------------------------------------------------------
-" vim-rooter
-" ----------------------------------------------------------------------------
-
-let g:rooter_patterns = ['.git']
-let g:rooter_cd_cmd = 'lcd'
-let g:rooter_silent_chdir = 1
-let g:rooter_manual_only = 1
-
-" ----------------------------------------------------------------------------
-" vim-prettier
-" ----------------------------------------------------------------------------
-
-let g:prettier#exec_cmd_async = 1
-let g:prettier#quickfix_auto_focus = 0
-let g:prettier#autoformat_require_pragma = 0
-let g:prettier#autoformat_config_present = 1
-
-" ----------------------------------------------------------------------------
-" ale
-" ----------------------------------------------------------------------------
-
-let g:ale_completion_autoimport = 1
-let g:ale_linters_explicit = 1
-let g:ale_linters = {
-  \ 'javascript': ['eslint'] }
-
-" ----------------------------------------------------------------------------
-" fzf
-" ----------------------------------------------------------------------------
-
-let g:fzf_buffers_jump = 1
-let g:fzf_layout = { 'down': '25%' }
-let g:fzf_colors = {
-  \ 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-if executable('fd')
-  let $FZF_DEFAULT_COMMAND = 'fd --type f --hidden --follow --exclude .git'
-endif
-
-autocmd! FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-command! -nargs=* -bang Files call <sid>fzf_files(<q-args>, <bang>0)
-command! -nargs=* -bang FilesAll call <sid>fzf_filesAll(<q-args>, <bang>0)
-command! -nargs=* -bang Grep call <sid>fzf_ripGrep(<q-args>, <bang>0)
-command! -nargs=* -bang GitGrep call <sid>fzf_gitGrep(<q-args>, <bang>0)
-command! -nargs=* -bang GitFiles call <sid>fzf_gitFiles(<q-args>, <bang>0)
 
 " ============================================================================
 " Key bindings
@@ -232,10 +133,8 @@ nnoremap <leader>w <c-w>v
 " clear search
 nnoremap <silent> <leader><space> :nohlsearch<cr>
 
-" fzf
-nnoremap <c-g> :Grep<cr>
-nnoremap <c-p> :Files<cr>
-nnoremap <c-t> :Buffers<cr>
+" netrw
+cnoreabbrev E Explore
 
 " move a line up/down/left/right
 " https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
@@ -277,63 +176,3 @@ else
   nnoremap <leader>D "*D
   vnoremap <leader>d "*d
 endif
-
-" ============================================================================
-" Functions
-" ============================================================================
-
-" ----------------------------------------------------------------------------
-" fzf
-" ----------------------------------------------------------------------------
-
-" fzf files with preview
-function! s:fzf_files(query, fullscreen)
-  call fzf#vim#files(a:query, s:fzf_withPreview({}), a:fullscreen)
-endfunction
-
-" fzf all files with preview
-function! s:fzf_filesAll(query, fullscreen)
-  let opts = { 'source': 'fd --type f --hidden --follow --exclude .git --no-ignore . '.expand(a:query) }
-  call fzf#run(fzf#wrap(s:fzf_withPreview(opts), a:fullscreen))
-endfunction
-
-" fzf git grep with preview
-function! s:fzf_gitGrep(query, fullscreen)
-  if !s:fzf_gitRepo()
-    echohl WarningMsg
-    echom 'Not in git repo'
-    echohl None
-    return
-  endif
-  call s:fzf_wrapGrep('git grep --line-number -- '.shellescape(a:query), {}, a:fullscreen)
-endfunction
-
-" fzf git files with preview
-function! s:fzf_gitFiles(query, fullscreen)
-  call fzf#vim#gitfiles(a:query, s:fzf_withPreview({}), a:fullscreen)
-endfunction
-
-" fzf rip grep with preview
-function! s:fzf_ripGrep(query, fullscreen)
-  let rg = '
-    \ rg --column --line-number --no-heading --fixed-strings --smart-case --no-ignore --hidden --color "always"
-    \ -g "!{.git,node_modules,vendor,third_party}/*" %s
-    \ || true'
-  let cmd = printf(rg, shellescape(a:query))
-  let opts = { 'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.printf(rg, '{q}')] }
-  call s:fzf_wrapGrep(cmd, opts, a:fullscreen)
-endfunction
-
-function! s:fzf_gitRepo()
-  let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
-  return v:shell_error ? v:false : v:true
-endfunction
-
-function! s:fzf_wrapGrep(cmd, opts, fullscreen)
-  call fzf#vim#grep(a:cmd, v:true, s:fzf_withPreview(a:opts), a:fullscreen)
-endfunction
-
-function! s:fzf_withPreview(opts)
-  let a:opts.dir = FindRootDirectory()
-  return fzf#vim#with_preview(a:opts, 'right', 'ctrl-/')
-endfunction
