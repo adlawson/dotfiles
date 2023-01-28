@@ -29,5 +29,7 @@
     "workbench.colorTheme": "Sonokai Maia",
     "workbench.layoutControl.enabled": false,
     "workbench.editor.limit.enabled": true,
-    "workbench.editor.showTabs": false
+    "workbench.editor.showTabs": false,
+    "workbench.startupEditor": "none",
+    "redhat.telemetry.enabled": false
 }
