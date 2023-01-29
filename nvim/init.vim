@@ -26,10 +26,10 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'jose-elias-alvarez/null-ls.nvim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/plenary.nvim' " required by null-ls.vim
+Plug 'nvim-lua/plenary.nvim' " required by null-ls.vim and telescope.nvim
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 Plug 'preservim/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
@@ -39,7 +39,7 @@ Plug 'vim-test/vim-test'
 " Themes
 " ----------------------------------------------------------------------------
 
-Plug 'sainnhe/sonokai'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 " ----------------------------------------------------------------------------
 " End
@@ -107,12 +107,8 @@ augroup ExtraWhitespaceGroup
   autocmd BufWinLeave * call clearmatches()
 augroup END
 
-let g:sonokai_style = 'maia'
-let g:sonokai_better_performance = 1
-let g:sonokai_transparent_background = 1
-let g:sonokai_colors_override = {'bg0': ['#002b36', '235'] }
-colorscheme sonokai
-autocmd VimEnter * ++nested colorscheme sonokai
+colorscheme dracula
+autocmd VimEnter * ++nested colorscheme dracula
 autocmd ColorScheme * hi Terminal ctermbg=235 guibg=#002b36
 
 " ----------------------------------------------------------------------------
@@ -225,11 +221,11 @@ nnoremap <silent> <leader><space> :nohlsearch<cr>
 " netrw
 cnoreabbrev E Explore
 
-" fzf
-nnoremap <silent> <c-p> :Files<cr>
-nnoremap <silent> <leader>pg :Grep<cr>
-nnoremap <silent> <leader>pf :Files<cr>
-nnoremap <silent> <leader>pb :Buffers<cr>
+" telescope
+nnoremap <silent> <expr> <c-p> ':Telescope find_files cwd='.FindRootDirectory().'/<cr>'
+nnoremap <silent> <expr> <leader>pf ':Telescope find_files cwd='.FindRootDirectory().'/<cr>'
+nnoremap <silent> <expr> <leader>pg ':Telescope live_grep cwd='.FindRootDirectory().'/<cr>'
+nnoremap <silent> <leader>pb :Telescope buffers<cr>
 
 " move a line up/down/left/right
 " https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
@@ -277,65 +273,7 @@ vnoremap <leader>D "+D
 if has('nvim')
   lua require('cmp-config')
   lua require('lsp-config')
+  lua require('telescope-config')
+  lua require('treesitter-config')
   lua require('trouble-config')
 endif
-
-" ============================================================================
-" Functions
-" ============================================================================
-
-" ----------------------------------------------------------------------------
-" fzf
-" ----------------------------------------------------------------------------
-
-" fzf files with preview
-function! s:fzf_files(query, fullscreen)
-  call fzf#vim#files(a:query, s:fzf_withPreview({}), a:fullscreen)
-endfunction
-
-" fzf all files with preview
-function! s:fzf_filesAll(query, fullscreen)
-  let opts = { 'source': 'fd --type f --hidden --follow --exclude .git --no-ignore . '.expand(a:query) }
-  call fzf#run(fzf#wrap(s:fzf_withPreview(opts), a:fullscreen))
-endfunction
-
-" fzf git grep with preview
-function! s:fzf_gitGrep(query, fullscreen)
-  if !s:fzf_gitRepo()
-    echohl WarningMsg
-    echom 'Not in git repo'
-    echohl None
-    return
-  endif
-  call s:fzf_wrapGrep('git grep --line-number -- '.shellescape(a:query), {}, a:fullscreen)
-endfunction
-
-" fzf git files with preview
-function! s:fzf_gitFiles(query, fullscreen)
-  call fzf#vim#gitfiles(a:query, s:fzf_withPreview({}), a:fullscreen)
-endfunction
-
-" fzf rip grep with preview
-function! s:fzf_ripGrep(query, fullscreen)
-  let rg = '
-    \ rg --column --line-number --no-heading --fixed-strings --smart-case --no-ignore --hidden --color "always"
-    \ -g "!{.git,node_modules,vendor,third_party}/*" %s
-    \ || true'
-  let cmd = printf(rg, shellescape(a:query))
-  let opts = { 'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.printf(rg, '{q}')] }
-  call s:fzf_wrapGrep(cmd, opts, a:fullscreen)
-endfunction
-
-function! s:fzf_gitRepo()
-  let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
-  return v:shell_error ? v:false : v:true
-endfunction
-
-function! s:fzf_wrapGrep(cmd, opts, fullscreen)
-  call fzf#vim#grep(a:cmd, v:true, s:fzf_withPreview(a:opts), a:fullscreen)
-endfunction
-
-function! s:fzf_withPreview(opts)
-  let a:opts.dir = FindRootDirectory()
-  return fzf#vim#with_preview(a:opts, 'right', 'ctrl-/')
-endfunction

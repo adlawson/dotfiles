@@ -9,7 +9,9 @@ null_ls.setup({
 })
 
 vim.diagnostic.config({
+  severity_sort = true,
   update_in_insert = false,
+  virtual_text = false,
 })
 
 local function common_formatting(client, bufnr)
@@ -19,7 +21,7 @@ local function common_formatting(client, bufnr)
       group = augroup,
       buffer = bufnr,
       callback = function()
-        vim.lsp.buf.formatting_sync()
+        vim.lsp.buf.format({ bufnr = bufnr })
       end,
     })
   end
@@ -30,13 +32,19 @@ local function common_keymap(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
   buf_set_keymap('n', '<localleader>ff', '<cmd>lua vim.lsp.buf.definition()<cr>', bufopts)
-  --buf_set_keymap('n', '<localleader>fr', '<cmd>lua vim.lsp.buf.references()<cr>', bufopts)
+  buf_set_keymap('n', '<localleader>fr', '<cmd>lua vim.lsp.buf.references()<cr>', bufopts)
   buf_set_keymap('n', '<localleader>fs', '<cmd>lua vim.lsp.buf.hover()<cr>', bufopts)
   buf_set_keymap('n', '<localleader>fa', '<cmd>lua vim.lsp.buf.code_action()<cr>', bufopts)
   buf_set_keymap('v', '<localleader>fa', '<cmd>lua vim.lsp.buf.range_code_action()<cr>', bufopts)
-  buf_set_keymap('n', '<localleader>fe', '<cmd>lua vim.lsp.diagnostic.open_float()<cr>', bufopts)
+  buf_set_keymap('n', '<localleader>fe', '<cmd>lua vim.diagnostic.open_float()<cr>', bufopts)
   buf_set_keymap('n', '<localleader>f[', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', bufopts)
   buf_set_keymap('n', '<localleader>f]', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', bufopts)
+
+  vim.keymap.set('n', '<localleader>wd', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<localleader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<localleader>wq', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
 end
 
 local function common_on_attach(client, bufnr)
@@ -80,7 +88,8 @@ lsp_config.gopls.setup((function()
 
   return {
     cmd = {'gopls', '-remote=auto', 'serve'},
-    filetypes = {'go', 'gomod', 'gohtmltmpl', 'gotexttmpl'},
+    filetypes = {'go', 'gomod', 'gowork', 'gohtmltmpl', 'gotexttmpl', 'gotmpl'},
+    single_file_support = true,
     root_dir = root_dir,
     root_dir = lsp_util.root_pattern(unpack(vim.g.go_gopls_root_dir or {
       'go.work',
@@ -111,4 +120,13 @@ lsp_config.gopls.setup((function()
       },
     },
   }
+end)())
+
+
+-- ----------------------------------------------------------------------------
+-- terraform
+-- ----------------------------------------------------------------------------
+
+lsp_config.terraformls.setup((function()
+  return {}
 end)())
