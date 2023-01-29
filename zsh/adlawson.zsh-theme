@@ -7,7 +7,7 @@ typeset -aHg PROMPT_SEGMENTS=(
 CURRENT_BG=NONE
 PRIMARY_FG=white
 SEGMENT_SEPARATOR="\ue0b0"
-BRANCH="\ue0a0"
+BRANCH="\uf418"
 
 prompt_segment() {
   local bg fg
@@ -36,7 +36,7 @@ prompt_git() {
   local color ref
   $(command git symbolic-ref HEAD &>/dev/null)
   if [[ "$?" -eq 0 ]]; then
-    color=magenta
+    color=162m
     ref=$(git_current_branch)
     prompt_segment $color $PRIMARY_FG
     print -n " $BRANCH $ref "
@@ -44,7 +44,7 @@ prompt_git() {
 }
 
 prompt_dir() {
-  prompt_segment blue $PRIMARY_FG ' %1~ '
+  prompt_segment 32m $PRIMARY_FG ' %1~ '
 }
 
 prompt_main() {
