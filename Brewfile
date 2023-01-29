@@ -32,7 +32,10 @@ brew "vim"
 
 # Fonts
 tap  "homebrew/cask-fonts"
+cask "font-fira-code"
 cask "font-menlo-for-powerline"
+cask "font-roboto-mono"
+cask "font-symbols-only-nerd-font"
 
 # keys.pub
 tap  "keys-pub/tap"
