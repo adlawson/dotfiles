@@ -14,6 +14,15 @@ vim.diagnostic.config({
   virtual_text = false,
 })
 
+for _, sign in ipairs({
+	{ name = "DiagnosticSignError", text = "\u{f057}" },
+	{ name = "DiagnosticSignWarn", text = "\u{f071}" },
+	{ name = "DiagnosticSignHint", text = "\u{f05a}" },
+	{ name = "DiagnosticSignInfo", text = "\u{f059}" },
+}) do
+	vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text })
+end
+
 local function common_formatting(client, bufnr)
   if client.supports_method("textDocument/formatting") then
     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -102,7 +111,7 @@ lsp_config.gopls.setup((function()
     settings = {
       gopls = vim.g.go_gopls_settings or {
         analyses = {
-          fieldalignment = true,
+          fieldalignment = false,
           nilness = true,
           unusedparams = true,
           unusedwrite = true,
