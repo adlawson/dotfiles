@@ -31,6 +31,7 @@ local function common_keymap(client, bufnr)
   local bufopts = { noremap=true, silent=true }
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
+  buf_set_keymap('n', '<C-LeftMouse>',   '<LeftMouse><cmd>lua vim.lsp.buf.definition()<cr>', bufopts)
   buf_set_keymap('n', '<localleader>ff', '<cmd>lua vim.lsp.buf.definition()<cr>', bufopts)
   buf_set_keymap('n', '<localleader>fr', '<cmd>lua vim.lsp.buf.references()<cr>', bufopts)
   buf_set_keymap('n', '<localleader>fs', '<cmd>lua vim.lsp.buf.hover()<cr>', bufopts)

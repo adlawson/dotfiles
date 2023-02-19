@@ -2,6 +2,8 @@
 !/gpg/gpg.conf
 !/gpg/gpg-agent.conf
 
+/nvim/.*
+/nvim/git/plugged/*
 /vim/.*
 /vim/plugged/*
 

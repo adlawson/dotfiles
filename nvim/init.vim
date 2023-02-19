@@ -13,7 +13,7 @@ let maplocalleader = ' '
 " Plugins
 " ============================================================================
 
-silent! if plug#begin('~/.vim/plugged')
+silent! if plug#begin('~/.config/nvim/git/plugged')
 
 let g:polyglot_disabled = ['autoindent', 'sensible'] " before plugin
 
@@ -30,6 +30,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim' " required by null-ls.vim and telescope.nvim
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': ' arch -arm64 make' }
 Plug 'preservim/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
@@ -130,40 +131,6 @@ inoremap <expr> <cr> pumvisible() ? (complete_info().selected == -1 ? '<c-y><cr>
 " ============================================================================
 " Plugin settings
 " ============================================================================
-
-" ----------------------------------------------------------------------------
-" fzf
-" ----------------------------------------------------------------------------
-
-let g:fzf_buffers_jump = 1
-let g:fzf_layout = { 'down': '25%' }
-let g:fzf_colors = {
-  \ 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-if executable('fd')
-  let $FZF_DEFAULT_COMMAND = 'fd --type f --hidden --follow --exclude .git'
-endif
-
-autocmd! FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-command! -nargs=* -bang Files call <sid>fzf_files(<q-args>, <bang>0)
-command! -nargs=* -bang FilesAll call <sid>fzf_filesAll(<q-args>, <bang>0)
-command! -nargs=* -bang Grep call <sid>fzf_ripGrep(<q-args>, <bang>0)
-command! -nargs=* -bang GitGrep call <sid>fzf_gitGrep(<q-args>, <bang>0)
-command! -nargs=* -bang GitFiles call <sid>fzf_gitFiles(<q-args>, <bang>0)
 
 " ----------------------------------------------------------------------------
 " localvimrc
