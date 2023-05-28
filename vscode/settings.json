@@ -4,6 +4,7 @@
     "editor.fontSize": 15,
     "editor.minimap.enabled": false,
     "editor.renderLineHighlight": "none",
+    "editor.renderWhitespace": "trailing",
     "editor.rulers": [ 80, 120 ],
     "extensions.experimental.affinity": {
         "asvetliakov.vscode-neovim": 1
