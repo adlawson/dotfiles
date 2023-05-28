@@ -10,7 +10,7 @@ let mapleader      = ' '
 let maplocalleader = ' '
 
 let g:home = get(g:, 'home', expand('~'))
-let g:vimroot = get(g:, 'vimroot', expand('%:p:h'))
+let g:vimroot = get(g:, 'vimroot', g:home.'/.config/nvim')
 
 " ============================================================================
 " Settings
