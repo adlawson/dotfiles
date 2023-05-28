@@ -34,6 +34,7 @@ brew "vim"
 tap  "homebrew/cask-fonts"
 cask "font-fira-code"
 cask "font-menlo-for-powerline"
+cask "font-meslo-lg-nerd-font"
 cask "font-roboto-mono"
 cask "font-symbols-only-nerd-font"
 
