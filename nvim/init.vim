@@ -55,18 +55,6 @@ set wildmenu                    " command autocomplete
 set wildmode=longest:full,full  " command autocomplete mode
 
 " ----------------------------------------------------------------------------
-" Runtime
-" ----------------------------------------------------------------------------
-
-if exists('g:vscode')
-  exec 'source' g:vimroot.'/vscode.vim'
-elseif has('nvim')
-  exec 'source' g:vimroot.'/nvim.vim'
-else
-  exec 'source' g:vimroot.'/vim.vim'
-endif
-
-" ----------------------------------------------------------------------------
 " Editor behaviour
 " ----------------------------------------------------------------------------
 
@@ -160,3 +148,15 @@ nnoremap <leader>d "+d
 nnoremap <leader>D "+D
 vnoremap <leader>d "+d
 vnoremap <leader>D "+D
+
+" ============================================================================
+" Runtime
+" ============================================================================
+
+if exists('g:vscode')
+  exec 'source' g:vimroot.'/vscode.vim'
+elseif has('nvim')
+  exec 'source' g:vimroot.'/nvim.vim'
+else
+  exec 'source' g:vimroot.'/vim.vim'
+endif

@@ -25,6 +25,6 @@ xnoremap <leader>wo <Cmd>call VSCodeNotift('workbench.action.joinAllGroups')<CR>
 " vsnetrw
 command! E call VSCodeNotify('vsnetrw.open')
 AlterCommand e[xplore] E
-xnoremap e <Cmd>call VSCodeNotify('vsnetrw.open')<CR>
-nnoremap e <Cmd>call VSCodeNotify('vsnetrw.open')<CR>
+xnoremap <leader>e <Cmd>call VSCodeNotify('vsnetrw.open')<CR>
+nnoremap <leader>e <Cmd>call VSCodeNotify('vsnetrw.open')<CR>
 
