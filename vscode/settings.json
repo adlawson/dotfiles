@@ -1,35 +1,29 @@
 {
-    "editor.fontSize": 14,
+    "debug.console.fontSize": 15,
+    "editor.fontFamily": "Menlo",
+    "editor.fontSize": 15,
     "editor.minimap.enabled": false,
+    "editor.renderLineHighlight": "none",
     "editor.rulers": [ 80, 120 ],
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
     "files.associations": { "Dockerfile-*" : "dockerfile" },
     "go.toolsManagement.autoUpdate": false,
+    "redhat.telemetry.enabled": false,
     "terminal.integrated.copyOnSelection": true,
-    "terminal.integrated.fontFamily": "Menlo for Powerline, Menlo",
-    "terminal.integrated.fontSize": 14,
-    "vim.leader": ",",
-    "vim.insertModeKeyBindings": [
-        { "before" : ["<c-j>"], "commands" : ["cursorDown"], "when" : "textInputFocus", "silent" : true },
-        { "before" : ["<c-k>"], "commands" : ["cursorUp"], "when" : "textInputFocus", "silent" : true }
-    ],
-    "vim.normalModeKeyBindings": [
-        { "before" : [";"], "after" : [":"] },
-        { "before" : ["g", "r"], "commands" : ["editor.action.goToReferences"], "when" : "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor", "silent" : "true" },
-        { "before" : ["<c-j>"], "commands" : ["editor.action.moveLinesDownAction"], "silent" : true },
-        { "before" : ["<c-k>"], "commands" : ["editor.action.moveLinesUpAction"], "silent" : true },
-        { "before" : ["<leader>", "w", "w"], "commands" : ["workbench.action.splitEditorRight"], "silent" : true }
-    ],
-    "vim.visualModeKeyBindings": [
-        { "before" : ["<c-j>"], "commands" : ["editor.action.moveLinesDownAction"], "silent" : true },
-        { "before" : ["<c-k>"], "commands" : ["editor.action.moveLinesUpAction"], "silent" : true }
-    ],
-    "vim.useSystemClipboard": true,
+    "terminal.integrated.fontFamily": "MesloLGL Nerd Font, Menlo",
+    "terminal.integrated.fontSize": 15,
+    "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.tabs.enabled": false,
     "window.titleBarStyle": "native",
     "workbench.activityBar.visible": false,
-    "workbench.colorTheme": "Sonokai Maia",
-    "workbench.layoutControl.enabled": false,
-    "workbench.editor.limit.enabled": true,
+    "workbench.colorTheme": "Dracula",
+    "workbench.editor.enablePreviewFromQuickOpen": true,
     "workbench.editor.showTabs": false,
+    "workbench.editor.limit.enabled": true,
+    "workbench.layoutControl.enabled": false,
     "workbench.startupEditor": "none",
-    "redhat.telemetry.enabled": false
+    "zenMode.centerLayout": false,
+    "zenMode.hideLineNumbers": false
 }

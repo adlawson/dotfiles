@@ -4,7 +4,11 @@
         "command": "workbench.action.terminal.toggleTerminal"
     },
     {
-        "key": "ctrl+`",
-        "command": "-workbench.action.terminal.toggleTerminal"
+        "key": "ctrl+cmd+space",
+        "command": "workbench.action.toggleZenMode"
+    },
+    {
+        "key": "cmd+k z",
+        "command": "workbench.action.toggleZenMode"
     }
 ]
