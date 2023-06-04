@@ -1,6 +1,18 @@
 " ============================================================================
-" VSCode
+" Plugins
 " ============================================================================
+
+silent! if plug#begin(g:vimroot.'/git/plugged')
+
+" Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-commentary'
+
+" ----------------------------------------------------------------------------
+" End
+" ----------------------------------------------------------------------------
+
+call plug#end()
+endif
 
 " ----------------------------------------------------------------------------
 " Key bindings
@@ -21,6 +33,13 @@ nnoremap <leader>wl <Cmd>call VSCodeNotify('workbench.action.focusRightGroup')<C
 xnoremap <leader>wl <Cmd>call VSCodeNotify('workbench.action.focusRightGroup')<CR>
 nnoremap <leader>wo <Cmd>call VSCodeNotify('workbench.action.joinAllGroups')<CR>
 xnoremap <leader>wo <Cmd>call VSCodeNotift('workbench.action.joinAllGroups')<CR>
+
+" vim-commentary
+xnoremap <leader>ci <Plug>Commentary
+nnoremap <leader>ci <Plug>Commentary
+onoremap <leader>ci <Plug>Commentary
+nnoremap <leader>ci <Plug>CommentaryLine
+nnoremap <leader>cu <Plug>Commentary<Plug>Commentary
 
 " vsnetrw
 command! E call VSCodeNotify('vsnetrw.open')
