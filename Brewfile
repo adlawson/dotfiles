@@ -29,6 +29,8 @@ brew "poetry"
 brew "pyenv"
 brew "rust"
 brew "vim"
+tap "d12frosted/emacs-plus"
+brew "emacs-plus", args: ["with-native-comp", "without-cocoa"]
 
 # Fonts
 tap  "homebrew/cask-fonts"
