@@ -58,11 +58,11 @@ prompt_end() {
 }
 
 prompt_git() {
-  local color ref
   $(command git symbolic-ref HEAD &>/dev/null)
   if [[ "$?" -eq 0 ]]; then
     export ZSH_THEME_GIT_PROMPT_PREFIX=''
     export ZSH_THEME_GIT_PROMPT_SUFFIX=''
+    export GIT_PS1_SHOWCONFLICTSTATE='yes'
     _adlawson_prompt_segment $ADL_PROMPT_GIT_BG $ADL_PROMPT_GIT_FG " $ADL_PROMPT_GIT_PREFIX $(git_prompt_info) "
   fi
 }

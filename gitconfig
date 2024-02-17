@@ -20,3 +20,5 @@
     path = ~/src/github.com/monzo/.gitconfig
 [includeIf "gitdir:~/Projects/polymill/**"]
     path = ~/Projects/polymill/.gitconfig
+[oh-my-zsh]
+	hide-dirty = 1
