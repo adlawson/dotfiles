@@ -50,4 +50,5 @@
 ;; (unpin! t)
 
 
+(package! protobuf-mode)
 (package! evil-snipe :disable t)

@@ -76,24 +76,31 @@
 ;; they are implemented.
 
 
+;;;
+;;; Editor behaviour
+;;;
+
 ;; Start emacs server unless one is already running
 (require 'server)
 (unless server-process (server-start))
 
-;; Evil soften ex-command key to `;`
-;; https://www.reddit.com/r/DoomEmacs/comments/p1qrpb/remapping_to/
-(dolist (state '(motion normal visual))
-  (evil-define-key state 'global (kbd ";") 'evil-ex))
+;; Disable truncate-lines / enable soft line-wrap
+;; https://emacs.stackexchange.com/questions/54817/remove-dollar-sign-at-beginning-of-line
+(setq-default truncate-lines nil)
 
-;; Disable lsp-terraform to workaround a bug with its config.
 ;; https://github.com/emacs-lsp/lsp-mode/issues/3577#issuecomment-1709232622
 (after! lsp-mode
   (delete 'lsp-terraform lsp-client-packages))
 
+;; Enable phil collins
+(global-display-fill-column-indicator-mode 1)
+(setq-default fill-column 80)
+(setq-default display-fill-column-indicator t)
+(setq-default display-fill-column-indicator-column 80)
+
 
 ;;;
 ;;; Keybindings
-;;; https://discourse.doomemacs.org/t/how-to-re-bind-keys/56
 ;;;
 
 ;; Mouse tracking and scrolling
@@ -105,23 +112,47 @@
 
 ;; Window keys
 (unless window-system
-  (map! :map evil-normal-state-map
-        :prefix "<SPC> w"
+  (map! :leader
+        :prefix "w"
         "e" 'doom/window-enlargen))
 
-;; Editor keys
+;; Evil soften ex-command key to `;`
+;; https://www.reddit.com/r/DoomEmacs/comments/p1qrpb/remapping_to/
+(dolist (state '(motion normal visual))
+  (evil-define-key state 'global (kbd ";") 'evil-ex))
+
+;; Reset evil behaviours to those I find more natural
+;; https://github.com/doomemacs/doomemacs/blob/35865ef5/modules/editor/evil/config.el#L20-L21
+(setq! evil-want-Y-yank-to-eol nil)
+(setq! evil-want-C-i-jump t)
+
+;; Custom commands used for key bindings
 (defun adlawson/evil-ex-global-substitute () (interactive) (evil-ex "%s/"))
 (defun adlawson/evil-ex-visual-substitute () (interactive) (evil-ex "'<,'>s/"))
+(defun adlawson/window-split-vertical-1 () (interactive) ())
+(defun adlawson/window-split-vertical-2 () (interactive) ())
+(defun adlawson/window-split-vertical-3 () (interactive) ())
+
+;; Editor keys
+;; https://discourse.doomemacs.org/t/how-to-re-bind-keys/56
+(map! :leader
+      "/"   'adlawson/evil-ex-global-substitute
+      "p /" '+default/search-project
+      "w 1" 'adlawson/window-split-vertical-1
+      "w 2" 'adlawson/window-split-vertical-2
+      "w 3" 'adlawson/window-split-vertical-3)
 (map! :map evil-normal-state-map
       "C-h" 'evil-shift-left-line
       "C-j" 'drag-stuff-down
       "C-k" 'drag-stuff-up
       "C-l" 'evil-shift-right-line
-      "g /" 'adlawson/evil-ex-global-substitute)
+      "C-i" 'evil-jump-forward
+      "C-o" 'evil-jump-backward)
 (map! :map evil-visual-state-map
+      "/"   'adlawson/evil-ex-visual-substitute
+      "S"   'evil-change-whole-line
       "C-j" 'drag-stuff-down
-      "C-k" 'drag-stuff-up
-      "g /" 'adlawson/evil-ex-visual-substitute)
+      "C-k" 'drag-stuff-up)
 
 ;; Golang keys
 (map! :after go
