@@ -39,24 +39,23 @@ mkdir -p "$HOME/Library/Application Support/Code/User"
 
 # Link config to home directory
 echo "⏳ Creating symlinks"
-homelink "doom" ".config/"
+homelink "doom" ".config"
 homelink "gpg" ".gnupg"
 homelink "gitconfig" ".gitconfig"
 homelink "kitty" ".config"
 homelink "nvim" ".config"
 homelink "vim" ".vim"
 homelink "vimrc" ".vimrc"
+homelink "wezterm" ".config"
 homelink "zsh" ".zsh"
 homelink "zshrc" ".zshrc"
 homelink "vscode/keybindings.json" "Library/Application Support/Code/User/keybindings.json"
 homelink "vscode/settings.json" "Library/Application Support/Code/User/settings.json"
 
-# Install doomemacs
+# Install spacemacs
 echo "⏳ Installing doomemacs"
-[ ! -d "$HOME/.config/emacs" ] && \
-  git clone --depth 1 https://github.com/doomemacs/doomemacs "$HOME/.config/emacs"
-# Run `doom sync`
-"$HOME/.config/emacs/bin/doom" sync
+[ ! -d "$HOME/.emacs.d" ] && \
+  git clone --depth 1 https://github.com/doomemacs/doomemacs "$HOME/.emacs.d"
 
 # Install vim plugins
 echo "⏳ Installing vim plugins"

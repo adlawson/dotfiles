@@ -29,6 +29,7 @@ brew "poetry"
 brew "pyenv"
 brew "rust"
 brew "vim"
+cask "wezterm"
 tap "d12frosted/emacs-plus"
 brew "emacs-plus", args: ["with-native-comp", "without-cocoa"]
 
