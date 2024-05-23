@@ -2,7 +2,7 @@
 " Plugins
 " ============================================================================
 
-silent! if plug#begin(g:home.'/.vim/plugged')
+silent! if plug#begin(g:vimroot.'/plugged')
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'preservim/nerdcommenter'

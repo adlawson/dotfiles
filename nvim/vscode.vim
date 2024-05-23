@@ -2,9 +2,8 @@
 " Plugins
 " ============================================================================
 
-silent! if plug#begin(g:vimroot.'/git/plugged')
+silent! if plug#begin(g:vimroot.'/plugged')
 
-" Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-commentary'
 
 " ----------------------------------------------------------------------------
@@ -19,31 +18,36 @@ endif
 " ----------------------------------------------------------------------------
 
 " window
-nnoremap <leader>ww <Cmd>call VSCodeNotify('workbench.action.splitEditorRight')<CR>
-xnoremap <leader>ww <Cmd>call VSCodeNotift('workbench.action.splitEditorRight')<CR>
-nnoremap <leader>wq <Cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>
-xnoremap <leader>wq <Cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>
-nnoremap <leader>wj <Cmd>call VSCodeNotify('workbench.action.focusBelowGroup')<CR>
-xnoremap <leader>wj <Cmd>call VSCodeNotify('workbench.action.focusBelowGroup')<CR>
-nnoremap <leader>wk <Cmd>call VSCodeNotify('workbench.action.focusAfterGroup')<CR>
-xnoremap <leader>wk <Cmd>call VSCodeNotify('workbench.action.focusAfterGroup')<CR>
-nnoremap <leader>wh <Cmd>call VSCodeNotify('workbench.action.focusLeftGroup')<CR>
-xnoremap <leader>wh <Cmd>call VSCodeNotify('workbench.action.focusLeftGroup')<CR>
-nnoremap <leader>wl <Cmd>call VSCodeNotify('workbench.action.focusRightGroup')<CR>
-xnoremap <leader>wl <Cmd>call VSCodeNotify('workbench.action.focusRightGroup')<CR>
-nnoremap <leader>wo <Cmd>call VSCodeNotify('workbench.action.joinAllGroups')<CR>
-xnoremap <leader>wo <Cmd>call VSCodeNotift('workbench.action.joinAllGroups')<CR>
+nnoremap <leader>we <cmd>call VSCodeNotify('workbench.action.splitEditorRight')<cr>
+xnoremap <leader>we <cmd>call VSCodeNotift('workbench.action.splitEditorRight')<cr>
+nnoremap <leader>wq <cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<cr>
+xnoremap <leader>wq <cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<cr>
+nnoremap <leader>ww <cmd>call VSCodeNotify('workbench.action.focusNextGroup')<cr>
+xnoremap <leader>ww <cmd>call VSCodeNotift('workbench.action.focusNextGroup')<cr>
+nnoremap <leader>wj <cmd>call VSCodeNotify('workbench.action.focusBelowGroup')<cr>
+xnoremap <leader>wj <cmd>call VSCodeNotify('workbench.action.focusBelowGroup')<cr>
+nnoremap <leader>wk <cmd>call VSCodeNotify('workbench.action.focusAfterGroup')<cr>
+xnoremap <leader>wk <cmd>call VSCodeNotify('workbench.action.focusAfterGroup')<cr>
+nnoremap <leader>wh <cmd>call VSCodeNotify('workbench.action.focusLeftGroup')<cr>
+xnoremap <leader>wh <cmd>call VSCodeNotify('workbench.action.focusLeftGroup')<cr>
+nnoremap <leader>wl <cmd>call VSCodeNotify('workbench.action.focusRightGroup')<cr>
+xnoremap <leader>wl <cmd>call VSCodeNotify('workbench.action.focusRightGroup')<cr>
+nnoremap <leader>wo <cmd>call VSCodeNotify('workbench.action.joinAllGroups')<cr>
+xnoremap <leader>wo <cmd>call VSCodeNotify('workbench.action.joinAllGroups')<cr>
+
+" finder
+nnoremap <leader>p <cmd>call VSCodeNotify('workbench.action.quickOpen')<cr>
 
 " vim-commentary
 xnoremap <leader>ci <Plug>Commentary
-nnoremap <leader>ci <Plug>Commentary
-onoremap <leader>ci <Plug>Commentary
-nnoremap <leader>ci <Plug>CommentaryLine
-nnoremap <leader>cu <Plug>Commentary<Plug>Commentary
+nnoremap <leader>ci <plug>Commentary
+onoremap <leader>ci <plug>Commentary
+nnoremap <leader>ci <plug>CommentaryLine
+nnoremap <leader>cu <plug>Commentary<plug>Commentary
 
 " vsnetrw
 command! E call VSCodeNotify('vsnetrw.open')
 AlterCommand e[xplore] E
-xnoremap <leader>e <Cmd>call VSCodeNotify('vsnetrw.open')<CR>
-nnoremap <leader>e <Cmd>call VSCodeNotify('vsnetrw.open')<CR>
+xnoremap <leader>e <cmd>call VSCodeNotify('vsnetrw.open')<cr>
+nnoremap <leader>e <cmd>call VSCodeNotify('vsnetrw.open')<cr>
 
