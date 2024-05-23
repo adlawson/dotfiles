@@ -1,1 +1,1 @@
-../_preloaded/vim-plug/plug.vim
+../git/vim-plug@master/plug.vim

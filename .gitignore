@@ -3,9 +3,12 @@
 !/gpg/gpg-agent.conf
 
 /nvim/.*
-/nvim/git/plugged/*
+/nvim/plugged/*
 /vim/.*
 /vim/plugged/*
+
+/zed/.tmp*
+/zed/embeddings/*
 
 /zsh/.*
 /zsh/local.zsh

@@ -1,0 +1,61 @@
+[
+  {
+    "bindings": {
+      "cmd-shift-b": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-shift-enter": "workspace::ToggleZoom",
+      "cmd-shift-t": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-shift-enter": "workspace::ToggleZoom",
+      "cmd-shift-e": "terminal_panel::ToggleFocus",
+      "cmd-shift-t": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrev"
+    }
+  },
+  {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "bindings": {
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrev"
+    }
+  },
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu && !(showing_code_actions || showing_completions)",
+    "bindings": {
+      ";": "command_palette::Toggle",
+      "space /": "vim::ReplaceCommand",
+      "space .": "file_finder::Toggle",
+      "space f": "file_finder::Toggle",
+      "space p": "file_finder::Toggle",
+      "space w v": "pane::SplitRight",
+      "space w w": "workspace::ActivateNextPane",
+      "ctrl-p": "file_finder::Toggle",
+      "ctrl-w left": "pane::SplitLeft",
+      "ctrl-w right": "pane::SplitRight",
+      "g a": "editor::ToggleCodeActions",
+      "g shift-r": "editor::FindAllReferences",
+      "ctrl-j": "editor::MoveLineDown",
+      "ctrl-k": "editor::MoveLineUp"
+    }
+  },
+  {
+    "context": "BufferSearchBar > Editor",
+    "bindings": {
+      "ctrl-j": "search::NextHistoryQuery",
+      "ctrl-k": "search::PreviousHistoryQuery"
+    }
+  }
+]

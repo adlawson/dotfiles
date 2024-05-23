@@ -1,5 +1,5 @@
-[submodule ".vim/_preloaded/vim-plug"]
-	path = vim/_preloaded/vim-plug
+[submodule "vim/git/vim-plug@master"]
+	path = vim/git/vim-plug@master
 	url = https://github.com/junegunn/vim-plug.git
 [submodule "nvim/git/vim-plug@master"]
 	path = nvim/git/vim-plug@master

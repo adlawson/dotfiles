@@ -30,12 +30,15 @@ brew "pyenv"
 brew "rust"
 brew "vim"
 cask "wezterm"
+cask "zed"
 tap "d12frosted/emacs-plus"
 brew "emacs-plus", args: ["with-native-comp", "without-cocoa"]
 
 # Fonts
 tap  "homebrew/cask-fonts"
 cask "font-fira-code"
+cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"
 cask "font-menlo-for-powerline"
 cask "font-meslo-lg-nerd-font"
 cask "font-roboto-mono"
