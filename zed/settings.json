@@ -8,18 +8,26 @@
 // from the command palette or from `Zed` application menu.
 {
   "base_keymap": "VSCode",
-  "theme": "Dracula",
+  "theme": {
+    "mode": "dark",
+    "dark": "Dracula",
+    "light": "Solarized Light"
+  },
   "vim_mode": true,
   "buffer_font_size": 16,
   "buffer_font_family": "JetBrains Mono",
   "buffer_line_height": "comfortable",
   "current_line_highlight": "gutter",
   "preferred_line_length": 80,
+  "when_closing_with_no_tabs": "keep_window_open",
   "tab_bar": {
     "show": false
   },
   "telemetry": {
     "metrics": false
+  },
+  "file_types": {
+    "Dockerfile": ["Dockerfile", "Dockerfile.*", "Dockerfile-*"]
   },
   "experimental.theme_overrides": {
     // Undo Dracula theme "fixes"
@@ -32,7 +40,7 @@
     "copy_on_select": true,
     "font_family": "JetBrainsMono Nerd Font Mono",
     "line_height": "standard",
-    "dock": "right"
+    "dock": "left"
   },
   "ui_font_family": "JetBrains Mono",
   "ui_font_size": 16,

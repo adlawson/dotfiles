@@ -1,28 +1,30 @@
 [
   {
     "bindings": {
-      "cmd-shift-b": "workspace::ToggleLeftDock"
+      // Workspace
+      "cmd-shift-b": "workspace::ToggleLeftDock",
+      "cmd-shift-left": ["workspace::ActivatePaneInDirection", "Left"],
+      "cmd-shift-right": ["workspace::ActivatePaneInDirection", "Right"],
+      "cmd-shift-up": ["workspace::ActivatePaneInDirection", "Up"],
+      "cmd-shift-down": ["workspace::ActivatePaneInDirection", "Down"],
+      "cmd-shift-t": "terminal_panel::ToggleFocus",
+      // Vim movement
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrev"
     }
   },
   {
     "context": "Editor",
     "bindings": {
       "cmd-shift-enter": "workspace::ToggleZoom",
-      "cmd-shift-t": "terminal_panel::ToggleFocus"
+      "cmd-shift-w": "pane::CloseAllItems"
     }
   },
   {
     "context": "Terminal",
     "bindings": {
       "cmd-shift-enter": "workspace::ToggleZoom",
-      "cmd-shift-e": "terminal_panel::ToggleFocus",
-      "cmd-shift-t": "workspace::ToggleRightDock"
-    }
-  },
-  {
-    "bindings": {
-      "ctrl-j": "menu::SelectNext",
-      "ctrl-k": "menu::SelectPrev"
+      "cmd-shift-n": "pane::SplitDown"
     }
   },
   {
@@ -35,20 +37,24 @@
   {
     "context": "Editor && VimControl && !VimWaiting && !menu && !(showing_code_actions || showing_completions)",
     "bindings": {
+      // Accept : <cmd> without <shift>
       ";": "command_palette::Toggle",
+      // Space-y Vim commands
       "space /": "vim::ReplaceCommand",
       "space .": "file_finder::Toggle",
       "space f": "file_finder::Toggle",
       "space p": "file_finder::Toggle",
       "space w v": "pane::SplitRight",
       "space w w": "workspace::ActivateNextPane",
+      // Natual Vim commands
+      "ctrl-j": "editor::MoveLineDown",
+      "ctrl-k": "editor::MoveLineUp",
       "ctrl-p": "file_finder::Toggle",
       "ctrl-w left": "pane::SplitLeft",
       "ctrl-w right": "pane::SplitRight",
+      // LSP "g" commands
       "g a": "editor::ToggleCodeActions",
-      "g shift-r": "editor::FindAllReferences",
-      "ctrl-j": "editor::MoveLineDown",
-      "ctrl-k": "editor::MoveLineUp"
+      "g shift-r": "editor::FindAllReferences"
     }
   },
   {

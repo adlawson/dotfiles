@@ -8,7 +8,9 @@
 /vim/plugged/*
 
 /zed/.tmp*
+/zed/conversations/*
 /zed/embeddings/*
+/zed/prompts/*
 
 /zsh/.*
 /zsh/local.zsh
