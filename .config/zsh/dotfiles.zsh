@@ -4,7 +4,7 @@ alias dotfiles=_adlawson_dotfiles
 
 local _adlawson_dotfiles() {
   case $1 in
-    install) shift; dotfiles brew && \
+    install) shift; dotfiles brew ; \ # continue if brew install partially fails
                     dotfiles git config --local status.showUntrackedFiles no && \
                     dotfiles git submodule update --init && \
                     vim +PlugInstall +qall ;;
