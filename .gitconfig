@@ -1,0 +1,18 @@
+[user]
+	name = adlawson
+	email = adlawson@gmail.com
+[init]
+	defaultBranch = main
+[color]
+	ui = true
+[core]
+	editor = vim
+[diff]
+	noprefix = true
+[push]
+	default = current
+[alias]
+	keep = "!f() { git branch | grep -v "$1" | grep -v '*' | xargs git branch -D; }; f"
+	purge = "!f() { git keep 'master\\|develop\\|release'; }; f"
+	rollback = "!f() { git reset --hard "$1" && git reset --soft '@{1}'; }; f"
+	staged = diff --cached

@@ -1,0 +1,68 @@
+[
+  {
+    "bindings": {
+      "cmd-0": "pane::RevealInProjectPanel",
+      // Vim finder
+      "ctrl-0": "pane::RevealInProjectPanel",
+    }
+  },
+  {
+    "bindings": {
+      // Workspace
+      "cmd-shift-b": "workspace::ToggleLeftDock",
+      "cmd-shift-left": ["workspace::ActivatePaneInDirection", "Left"],
+      "cmd-shift-right": ["workspace::ActivatePaneInDirection", "Right"],
+      "cmd-shift-up": ["workspace::ActivatePaneInDirection", "Up"],
+      "cmd-shift-down": ["workspace::ActivatePaneInDirection", "Down"],
+      "cmd-shift-t": "terminal_panel::ToggleFocus",
+      // Vim menus
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrev"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-shift-enter": "workspace::ToggleZoom",
+      "cmd-shift-w": "pane::CloseAllItems"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-shift-enter": "workspace::ToggleZoom",
+      "cmd-shift-n": "pane::SplitDown"
+    }
+  },
+  {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "bindings": {
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrev"
+    }
+  },
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu && !(showing_code_actions || showing_completions)",
+    "bindings": {
+      // Accept : <cmd> without <shift>
+      ";": "command_palette::Toggle",
+      // Vim movement
+      "ctrl-j": "editor::MoveLineDown",
+      "ctrl-k": "editor::MoveLineUp",
+      "ctrl-p": "file_finder::Toggle",
+      "ctrl-w left": "pane::SplitLeft",
+      "ctrl-w right": "pane::SplitRight",
+      "ctrl-w ctrl-x": "pane::CloseAllItems",
+      // LSP "g" commands
+      "g a": "editor::ToggleCodeActions",
+      "g shift-r": "editor::FindAllReferences"
+    }
+  },
+  {
+    "context": "BufferSearchBar > Editor",
+    "bindings": {
+      "ctrl-j": "search::NextHistoryQuery",
+      "ctrl-k": "search::PreviousHistoryQuery"
+    }
+  }
+]

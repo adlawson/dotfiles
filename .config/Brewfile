@@ -1,0 +1,37 @@
+# Homebrew Bundle
+#
+# ```
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# brew bundle
+# ```
+
+cask "1password"
+cask "google-chrome"
+cask "spotify"
+
+brew "git"
+brew "curl"
+brew "fd"
+brew "fzf"
+brew "ripgrep"
+brew "wget"
+brew "zsh"
+
+cask "docker"
+brew "folderify"
+brew "go"
+cask "kitty"
+brew "neovim"
+brew "nodejs"
+brew "nvm"
+brew "oh-my-posh"
+brew "poetry"
+brew "pyenv"
+brew "rust"
+cask "slack"
+brew "vim"
+cask "zed"
+
+cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-symbols-only-nerd-font"

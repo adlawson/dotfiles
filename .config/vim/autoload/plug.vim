@@ -1,0 +1,1 @@
+../git/vim-plug@master/plug.vim
