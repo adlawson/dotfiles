@@ -11,6 +11,8 @@
 	noprefix = true
 [push]
 	default = current
+[include]
+	path = ~/.gitconfig_local
 [alias]
 	keep = "!f() { git branch | grep -v "$1" | grep -v '*' | xargs git branch -D; }; f"
 	purge = "!f() { git keep 'master\\|develop\\|release'; }; f"
