@@ -19,6 +19,7 @@ brew "zsh"
 
 cask "docker"
 brew "folderify"
+cask "ghostty"
 brew "go"
 cask "kitty"
 brew "neovim"
