@@ -1,11 +1,13 @@
-theme = light:catppuccin-latte,dark:catppuccin-mocha
+theme = catppuccin-mocha
+
+font-family = "JetBrains Mono"
+font-size = 16
 
 shell-integration-features = no-cursor
 cursor-style = block
 mouse-hide-while-typing = true
 copy-on-select = true
 
-macos-titlebar-proxy-icon = hidden
 macos-titlebar-style = tabs
 macos-auto-secure-input = true
 

@@ -1,0 +1,21 @@
+theme = "catppuccin_mocha"
+
+[editor]
+end-of-line-diagnostics = "hint"
+
+[editor.inline-diagnostics]
+cursor-line = "error"
+other-lines = "error"
+
+[editor.file-picker]
+hidden = false
+
+[keys.normal]
+";" = "command_mode"
+"V" = "@xv"
+"Y" = "@xy"
+"C-p" = "file_picker_in_current_directory"
+
+[keys.insert]
+"C-j" = "move_line_down"
+"C-k" = "move_line_up"
