@@ -90,9 +90,7 @@ inoremap <expr> <c-k> ("\<c-p>")
 nnoremap <silent> <leader>o :only<cr>
 
 " vertical split
-inoremap <leader>we <c-w><c-w>
 nnoremap <leader>we <c-w><c-w>
-inoremap <leader>ww <c-w>v<c-w>l
 nnoremap <leader>ww <c-w>v<c-w>l
 
 " clear search
@@ -101,8 +99,6 @@ nnoremap <silent> <leader>/ :nohlsearch<cr>
 " netrw
 cnoreabbrev e Explore
 cnoreabbrev E Explore
-inoremap <silent> <leader>e :Explore<cr>
-nnoremap <silent> <leader>e :Explore<cr>
 
 " move a line up/down/left/right
 " https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
