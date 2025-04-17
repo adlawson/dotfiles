@@ -492,9 +492,6 @@ require('lazy').setup({
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-      -- Moves diagnostics to virtual lines below
-      'ErichDonGubler/lsp_lines.nvim',
-
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
 
@@ -664,12 +661,10 @@ require('lazy').setup({
         },
       }
 
-      -- Further Diagnostic Config for virtual lines
-      -- See https://github.com/ErichDonGubler/lsp_lines.nvim
-      require('lsp_lines').setup()
       vim.diagnostic.config {
         virtual_text = false,
-        virtual_lines = true,
+        virtual_lines = { current_line = true },
+        update_in_insert = false,
       }
 
       -- LSP servers and clients are able to communicate to each other what features they support.
