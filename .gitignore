@@ -5,7 +5,9 @@
 !/.gitmodules
 
 !/.github/
+!/.github/*
 !/.hushlogin
 !/.vimrc
 !/.zshrc
 !/.config/
+!/.config/*
