@@ -7,12 +7,16 @@
 	ui = true
 [core]
 	editor = vim
+	fsmonitor = false
+	untrackedcache = true
 [diff]
 	noprefix = true
 [push]
 	default = current
 [include]
 	path = ~/.gitconfig_local
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
 [alias]
 	keep = "!f() { git branch | grep -v "$1" | grep -v '*' | xargs git branch -D; }; f"
 	purge = "!f() { git keep 'master\\|develop\\|release'; }; f"

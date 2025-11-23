@@ -3,21 +3,17 @@
     "bindings": {
       "cmd-0": "pane::RevealInProjectPanel",
       // Vim finder
-      "ctrl-0": "pane::RevealInProjectPanel",
+      "ctrl-0": "pane::RevealInProjectPanel"
     }
   },
   {
     "bindings": {
       // Workspace
       "cmd-shift-b": "workspace::ToggleLeftDock",
-      "cmd-shift-left": ["workspace::ActivatePaneInDirection", "Left"],
-      "cmd-shift-right": ["workspace::ActivatePaneInDirection", "Right"],
-      "cmd-shift-up": ["workspace::ActivatePaneInDirection", "Up"],
-      "cmd-shift-down": ["workspace::ActivatePaneInDirection", "Down"],
       "cmd-shift-t": "terminal_panel::ToggleFocus",
       // Vim menus
       "ctrl-j": "menu::SelectNext",
-      "ctrl-k": "menu::SelectPrev"
+      "ctrl-k": "menu::SelectLast"
     }
   },
   {
@@ -38,7 +34,7 @@
     "context": "Editor && (showing_code_actions || showing_completions)",
     "bindings": {
       "ctrl-j": "editor::ContextMenuNext",
-      "ctrl-k": "editor::ContextMenuPrev"
+      "ctrl-k": "editor::ContextMenuLast"
     }
   },
   {
