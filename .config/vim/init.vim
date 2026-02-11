@@ -152,6 +152,7 @@ Plug 'preservim/nerdcommenter'
 " Themes
 " ----------------------------------------------------------------------------
 
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'dracula/vim', { 'as': 'dracula' }
 
 " ----------------------------------------------------------------------------
@@ -170,7 +171,7 @@ endif
 " ----------------------------------------------------------------------------
 
 syntax enable
-set background=dark
+set background=light
 
 augroup ExtraWhitespaceGroup
   autocmd!
@@ -182,6 +183,6 @@ augroup ExtraWhitespaceGroup
   autocmd BufWinLeave * call clearmatches()
 augroup END
 
-colorscheme dracula
-autocmd VimEnter * ++nested colorscheme dracula
+colorscheme catppuccin_latte
+autocmd VimEnter * ++nested colorscheme catppuccin_latte
 autocmd ColorScheme * hi Terminal ctermbg=235 guibg=#002b36

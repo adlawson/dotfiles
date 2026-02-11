@@ -3,7 +3,8 @@
   "palette": {
         "blue": "#8aadf4",
         "pink": "#c6a0f6",
-        "text": "#363a4f"
+        "text": "#363a4f",
+        "over": "#bcc0cc"
   },
   "blocks": [
     {
@@ -46,7 +47,7 @@
     }
   ],
   "transient_prompt": {
-    "template": "<,p:text> </><p:text,transparent>\ue0b0</> ",
+    "template": "<,p:over> </><p:over,transparent>\ue0b0</> ",
     "background": "transparent",
     "foreground": "transparent"
   },

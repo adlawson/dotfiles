@@ -35,10 +35,10 @@
     }
   },
   "base_keymap": "VSCode",
-  "icon_theme": "Catppuccin Macchiato",
+  "icon_theme": "Zed (Default)",
   "theme": {
-    "mode": "dark",
-    "dark": "Catppuccin Macchiato - No Italics",
+    "mode": "light",
+    "dark": "Catppuccin Mocha (Blur)",
     "light": "Catppuccin Latte - No Italics"
   },
   "vim_mode": true,
