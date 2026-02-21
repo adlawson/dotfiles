@@ -1,0 +1,20 @@
+{
+  "includeCoAuthoredBy": false,
+  "statusLine": {
+    "type": "command",
+    "command": "sh /Users/andrewlawson/.claude/bin/statusline.sh"
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/andrewlawson/.claude/bin/hook-notification-worktree-waiting.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

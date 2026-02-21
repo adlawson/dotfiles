@@ -13,9 +13,15 @@
         {
           "background": "p:pink",
           "foreground": "p:text",
+          "hide_root_location": true,
           "properties": {
+            "dir_length": 1,
+            "folder_icon": "",
+            "full_length_dirs": 2,
+            "hide_root_location": true,
             "home_icon": "~",
-            "style": "folder"
+            "max_depth": 2,
+            "style": "fish"
           },
           "trailing_diamond": "\ue0b0",
           "style": "diamond",

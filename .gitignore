@@ -9,5 +9,9 @@
 !/.hushlogin
 !/.vimrc
 !/.zshrc
+!/.claude/
+!/.claude/settings.json
+!/.claude/bin/
+!/.claude/bin/*
 !/.config/
 !/.config/*
