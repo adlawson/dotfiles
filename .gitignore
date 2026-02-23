@@ -10,8 +10,11 @@
 !/.vimrc
 !/.zshrc
 !/.claude/
+!/.claude/scripts/
+!/.claude/scripts/**
+!/.claude/skills/
+!/.claude/skills/**
+!/.claude/CLAUDE.md
 !/.claude/settings.json
-!/.claude/bin/
-!/.claude/bin/*
 !/.config/
 !/.config/*
