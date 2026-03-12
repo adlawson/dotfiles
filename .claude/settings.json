@@ -6,7 +6,7 @@
     "command": "sh /Users/andrewlawson/.claude/scripts/statusline.sh"
   },
   "enabledPlugins": {
-    "notify-talkback@adlawson-claude-plugins": true,
+    "notify-talkback@adlawson-claude-plugins": false,
     "language-go@adlawson-claude-plugins": true
   }
 }
