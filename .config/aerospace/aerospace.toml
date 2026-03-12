@@ -39,7 +39,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # Tile Ghostty when it becomes focussed
 # https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 on-focus-changed = [
-    #'exec-and-forget bash $HOME/.config/aerospace/on-focus-changed--tile-ghostty.sh'
+    'exec-and-forget bash $HOME/.config/aerospace/on-focus-changed--tile-ghostty-tabs.sh'
 ]
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
