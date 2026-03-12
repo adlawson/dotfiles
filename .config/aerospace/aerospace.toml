@@ -1,0 +1,220 @@
+# Place a copy of this config to ~/.aerospace.toml
+# After that, you can edit ~/.aerospace.toml to your liking
+
+# Config version for compatibility and deprecations
+# Fallback value (if you omit the key): config-version = 1
+config-version = 2
+
+# Start AeroSpace at login
+start-at-login = false
+
+# You can use it to add commands that run after AeroSpace startup.
+# Available commands : https://nikitabobko.github.io/AeroSpace/commands
+after-startup-command = []
+
+# Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
+# The 'accordion-padding' specifies the size of accordion padding
+# You can set 0 to disable the padding feature
+accordion-padding = 240
+
+# Possible values: tiles|accordion
+default-root-container-layout = 'tiles'
+
+# Possible values: horizontal|vertical|auto
+# 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
+#               tall monitor (anything higher than wide) gets vertical orientation
+default-root-container-orientation = 'auto'
+
+# Mouse follows focus when focused monitor changes
+# Drop it from your config, if you don't like this behavior
+# See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
+# See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
+# Fallback value (if you omit the key): on-focused-monitor-changed = []
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# Tile Ghostty when it becomes focussed
+# https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
+on-focus-changed = [
+    #'exec-and-forget bash $HOME/.config/aerospace/on-focus-changed--tile-ghostty.sh'
+]
+
+# You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
+# Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
+# Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
+automatically-unhide-macos-hidden-apps = false
+
+# List of workspaces that should stay alive even when they contain no windows,
+# even when they are invisible.
+# This config version is only available since 'config-version = 2'
+# Fallback value (if you omit the key): persistent-workspaces = []
+persistent-workspaces = [
+    "●︎○︎○︎",
+    "○︎●︎○︎",
+    "○︎○︎●︎",
+]
+
+# A callback that runs every time binding mode changes
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+# See: https://nikitabobko.github.io/AeroSpace/commands#mode
+on-mode-changed = []
+
+# All windows open in floating mode until they're explicitly tiled
+[[on-window-detected]]
+    run = 'layout floating'
+
+# Possible values: (qwerty|dvorak|colemak)
+# See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
+[key-mapping]
+    preset = 'qwerty'
+
+# Gaps between windows (inner-*) and between monitor edges (outer-*).
+# Possible values:
+# - Constant:     gaps.outer.top = 8
+# - Per monitor:  gaps.outer.top = [{ monitor.main = 16 }, { monitor."some-pattern" = 32 }, 24]
+#                 In this example, 24 is a default value when there is no match.
+#                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
+#                 See:
+#                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+[gaps]
+    inner.horizontal = 6
+    inner.vertical =   6
+    outer.left =       6
+    outer.bottom =     6
+    outer.top =        6
+    outer.right =      6
+
+# 'main' binding mode declaration
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+# 'main' binding mode must be always presented
+# Fallback value (if you omit the key): mode.main.binding = {}
+[mode.main.binding]
+
+    # All possible keys:
+    # - Letters.        a, b, c, ..., z
+    # - Numbers.        0, 1, 2, ..., 9
+    # - Keypad numbers. keypad0, keypad1, keypad2, ..., keypad9
+    # - F-keys.         f1, f2, ..., f20
+    # - Special keys.   minus, equal, period, comma, slash, backslash, quote, semicolon,
+    #                   backtick, leftSquareBracket, rightSquareBracket, space, enter, esc,
+    #                   backspace, tab, pageUp, pageDown, home, end, forwardDelete,
+    #                   sectionSign (ISO keyboards only, european keyboards only)
+    # - Keypad special. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
+    #                   keypadMinus, keypadMultiply, keypadPlus
+    # - Arrows.         left, down, up, right
+
+    # All possible modifiers: cmd, alt, ctrl, shift
+
+    # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
+
+    # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
+    # You can uncomment the following lines to open up terminal with alt + enter shortcut
+    # (like in i3)
+    # alt-enter = '''exec-and-forget osascript -e '
+    # tell application "Terminal"
+    #     do script
+    #     activate
+    # end tell'
+    # '''
+
+    alt-shift-a = 'mode aerospace'
+    alt-shift-j = 'mode join'
+    alt-shift-m = 'mode move'
+    alt-shift-r = 'mode resize'
+    alt-shift-s = 'mode swap'
+    alt-shift-w = 'mode window'
+
+    alt-shift-space = 'fullscreen' # Toggle fullscreen
+    alt-shift-enter = 'exec-and-forget bash $HOME/.config/aerospace/binding-swap--swap-target.sh'
+
+    alt-shift-left  = 'focus --boundaries-action wrap-around-the-workspace left'
+    alt-shift-down  = 'focus --boundaries-action wrap-around-the-workspace down'
+    alt-shift-up    = 'focus --boundaries-action wrap-around-the-workspace up'
+    alt-shift-right = 'focus --boundaries-action wrap-around-the-workspace right'
+
+    ctrl-left  = 'workspace --wrap-around prev'
+    ctrl-right = 'workspace --wrap-around next'
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.aerospace.binding]
+    esc = 'mode main'
+
+    alt-shift-a = [
+        'reload-config',
+        'exec-and-forget osascript -e "display notification \"Aerospace config reloaded\" with title \"Aerospace\""',
+        'mode main',
+    ]
+    
+    alt-shift-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling
+    alt-shift-r = ['flatten-workspace-tree', 'mode main'] # Reset layout
+
+    alt-shift-h = ['layout horizontal vertical', 'mode main']
+    alt-shift-v = ['layout horizontal vertical', 'mode main']
+
+    alt-shift-left  = ['join-with left',  'mode main']
+    alt-shift-down  = ['join-with down',  'mode main']
+    alt-shift-up    = ['join-with up',    'mode main']
+    alt-shift-right = ['join-with right', 'mode main']
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.join.binding]
+    esc         = 'mode main'
+    alt-shift-j = 'mode main'
+
+    alt-shift-left  = ['join-with left',  'mode main']
+    alt-shift-down  = ['join-with down',  'mode main']
+    alt-shift-up    = ['join-with up',    'mode main']
+    alt-shift-right = ['join-with right', 'mode main']
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.move.binding]
+    esc         = 'mode main'
+    alt-shift-m = 'mode main'
+
+    alt-shift-left  = ['move left',  'mode main']
+    alt-shift-down  = ['move down',  'mode main']
+    alt-shift-up    = ['move up',    'mode main']
+    alt-shift-right = ['move right', 'mode main']
+
+    ctrl-left  = ['move-node-to-workspace --wrap-around prev', 'mode main']
+    ctrl-right = ['move-node-to-workspace --wrap-around next', 'mode main']
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.resize.binding]
+    esc         = 'mode main'
+    alt-shift-r = 'mode main'
+
+    alt-shift-enter = ['fullscreen', 'mode main'] # Toggle fullscreen
+
+    alt-shift-minus = ['resize smart -120']
+    alt-shift-equal = ['resize smart +120']
+
+    alt-shift-left  = ['resize width -120']
+    alt-shift-down  = ['resize height -120']
+    alt-shift-up    = ['resize height +120']
+    alt-shift-right = ['resize width +120']
+
+    equal = ['balance-sizes', 'mode main']
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.swap.binding]
+    esc         = 'mode main'
+
+    alt-shift-s     = ['exec-and-forget bash $HOME/.config/aerospace/binding-swap--mark-target.sh', 'mode main']
+    alt-shift-enter = ['exec-and-forget bash $HOME/.config/aerospace/binding-swap--mark-target.sh', 'mode main']
+
+    alt-shift-left  = ['swap --wrap-around left',  'mode main']
+    alt-shift-down  = ['swap --wrap-around down',  'mode main']
+    alt-shift-up    = ['swap --wrap-around up',    'mode main']
+    alt-shift-right = ['swap --wrap-around right', 'mode main']
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.window.binding]
+    esc         = 'mode main'
+
+    alt-shift-w = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling
+    alt-shift-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling
+    alt-shift-r = ['flatten-workspace-tree', 'mode main'] # Reset layout
