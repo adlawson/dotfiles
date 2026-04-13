@@ -1,5 +1,5 @@
 ---
-name: open-pr
+name: pull-request
 description: Open a GitHub Pull Request (PR) following a style guide
 ---
 

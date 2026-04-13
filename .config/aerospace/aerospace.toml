@@ -6,7 +6,7 @@
 config-version = 2
 
 # Start AeroSpace at login
-start-at-login = false
+start-at-login = true
 
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands

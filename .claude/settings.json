@@ -1,5 +1,6 @@
 {
   "includeCoAuthoredBy": false,
+  "model": "opus",
   "hooks": {},
   "statusLine": {
     "type": "command",
@@ -8,5 +9,7 @@
   "enabledPlugins": {
     "notify-talkback@adlawson-claude-plugins": false,
     "language-go@adlawson-claude-plugins": true
-  }
+  },
+  "effortLevel": "medium",
+  "voiceEnabled": true
 }
