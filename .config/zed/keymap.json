@@ -1,43 +1,59 @@
 [
   {
+    // Find file in explorer
+    // ===
     "bindings": {
-      "cmd-0": "pane::RevealInProjectPanel",
-      // Vim finder
-      "ctrl-0": "pane::RevealInProjectPanel"
-    }
+      "ctrl-0": "pane::RevealInProjectPanel",
+    },
   },
   {
+    // Panels and dialogues
+    // ===
     "bindings": {
-      // Workspace
-      "cmd-shift-b": "workspace::ToggleLeftDock",
+      "cmd-shift-a": "agent::Toggle",
+      "cmd-shift-s": "multi_workspace::FocusWorkspaceSidebar",
+      "cmd-shift-d": "debug_panel::Toggle",
+      "cmd-shift-v": "workspace::ToggleLeftDock",
+      "cmd-shift-b": "workspace::ToggleRightDock",
       "cmd-shift-t": "terminal_panel::ToggleFocus",
-      // Vim menus
+      // Menus in vim-mode
       "ctrl-j": "menu::SelectNext",
-      "ctrl-k": "menu::SelectLast"
-    }
+      "ctrl-k": "menu::SelectLast",
+    },
   },
   {
     "context": "Editor",
     "bindings": {
       "cmd-shift-enter": "workspace::ToggleZoom",
-      "cmd-shift-w": "pane::CloseAllItems"
-    }
+      "cmd-shift-w": "pane::CloseAllItems",
+    },
   },
   {
     "context": "Terminal",
     "bindings": {
       "cmd-shift-enter": "workspace::ToggleZoom",
-      "cmd-shift-n": "pane::SplitDown"
-    }
+      "cmd-shift-n": "pane::SplitDown",
+    },
   },
   {
     "context": "Editor && (showing_code_actions || showing_completions)",
     "bindings": {
       "ctrl-j": "editor::ContextMenuNext",
-      "ctrl-k": "editor::ContextMenuLast"
-    }
+      "ctrl-k": "editor::ContextMenuLast",
+    },
   },
   {
+    // Search in vim-mode
+    // ===
+    "context": "BufferSearchBar > Editor",
+    "bindings": {
+      "ctrl-j": "search::NextHistoryQuery",
+      "ctrl-k": "search::PreviousHistoryQuery",
+    },
+  },
+  {
+    // Vim-mode movement bindings
+    // ===
     "context": "Editor && VimControl && !VimWaiting && !menu && !(showing_code_actions || showing_completions)",
     "bindings": {
       // Accept : <cmd> without <shift>
@@ -51,14 +67,7 @@
       "ctrl-w ctrl-x": "pane::CloseAllItems",
       // LSP "g" commands
       "g a": "editor::ToggleCodeActions",
-      "g shift-r": "editor::FindAllReferences"
-    }
+      "g shift-r": "editor::FindAllReferences",
+    },
   },
-  {
-    "context": "BufferSearchBar > Editor",
-    "bindings": {
-      "ctrl-j": "search::NextHistoryQuery",
-      "ctrl-k": "search::PreviousHistoryQuery"
-    }
-  }
 ]

@@ -7,68 +7,122 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "features": {
-    "edit_prediction_provider": "copilot"
-  },
-  "agent": {
-    "play_sound_when_agent_done": true,
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4o"
-    },
-    "commit_message_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4o"
-    },
-    "inline_assistant_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4o"
-    },
-    "thread_summary_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4o"
-    }
-  },
-  "agent_servers": {
-    "claude": {
-      "default_mode": "plan"
-    }
-  },
-  "base_keymap": "VSCode",
-  "icon_theme": "Zed (Default)",
-  "theme": {
-    "mode": "light",
-    "dark": "Catppuccin Mocha (Blur)",
-    "light": "Catppuccin Latte - No Italics"
-  },
-  "vim_mode": true,
+  // UI and Themes
+  // ===
+  "agent_buffer_font_size": 14,
+  "agent_ui_font_size": 14,
   "buffer_font_size": 14,
   "buffer_font_family": "JetBrains Mono",
   "buffer_line_height": "comfortable",
   "current_line_highlight": "gutter",
+  "icon_theme": "Zed (Default)",
   "preferred_line_length": 80,
   "show_wrap_guides": true,
-  "when_closing_with_no_tabs": "keep_window_open",
-  "tab_bar": {
-    "show": false
-  },
-  "telemetry": {
-    "metrics": false
-  },
-  "file_types": {
-    "Dockerfile": ["Dockerfile", "Dockerfile.*", "Dockerfile-*"]
-  },
-  "terminal": {
-    "copy_on_select": true,
-    "font_family": "JetBrainsMono Nerd Font Mono",
-    "line_height": "standard",
-    "dock": "left"
+  "theme": {
+    "dark": "Catppuccin Mocha - No Italics",
+    "light": "Catppuccin Latte - No Italics",
+    "mode": "light",
   },
   "ui_font_family": "JetBrains Mono",
-  "ui_font_size": 16,
+  "ui_font_size": 14,
+
+  // Editor Layout
+  // ===
+  "active_pane_modifiers": {
+    "inactive_opacity": 0.5,
+  },
+  "bottom_dock_layout": "right_aligned",
+  "collaboration_panel": {
+    "button": false,
+    "dock": "right",
+  },
+  "git_panel": { "dock": "right" },
+  "outline_panel": {
+    "button": false,
+    "dock": "right",
+  },
+  "project_panel": { "dock": "right" },
+
+  // Editor Behaviour
+  // ===
+  "cli_default_open_behavior": "existing_window",
+  "file_types": {
+    "Dockerfile": ["Dockerfile", "Dockerfile.*", "Dockerfile-*"],
+  },
+  "git": {
+    "worktree_directory": "../worktrees",
+  },
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "tab_bar": {
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false,
+    "show_pinned_tabs_in_separate_row": true,
+    "show": false,
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+
+  // Keyboard
+  // ===
+  "base_keymap": "VSCode",
+  "vim_mode": true,
+  "when_closing_with_no_tabs": "keep_window_open",
+
+  // AI and Agent Integrations
+  // ===
+  "agent": {
+    "dock": "left",
+    "notify_when_agent_waiting": "all_screens",
+    "play_sound_when_agent_done": "always",
+  },
+  "agent_servers": {
+    "claude-acp": {
+      "default_config_options": {
+        "effort": "high",
+        "model": "sonnet[1m]",
+        "mode": "plan",
+      },
+      "type": "registry",
+    },
+  },
+  "edit_predictions": {
+    "copilot": { "enable_next_edit_suggestions": true },
+    "disabled_globs": [],
+    "mode": "subtle",
+    "provider": "copilot",
+  },
+
+  // Languages
+  // ===
+  "languages": {
+    "Go": {
+      "debuggers": ["dlv"],
+      "language_servers": ["gopls"],
+    },
+    "Swift": {
+      "format_on_save": "off",
+    },
+  },
   "lsp": {
     "gopls": {
-      "initialization_options": {}
-    }
-  }
+      "initialization_options": {},
+    },
+  },
+
+  // Terminal
+  // ===
+  "terminal": {
+    "copy_on_select": true,
+    "dock": "bottom",
+    "font_family": "JetBrainsMono Nerd Font Mono",
+    "line_height": "standard",
+    "toolbar": { "breadcrumbs": false },
+  },
+
+  // Misc
+  // ===
 }
