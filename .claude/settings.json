@@ -1,6 +1,6 @@
 {
   "includeCoAuthoredBy": false,
-  "model": "opus",
+  "model": "sonnet[1m]",
   "hooks": {},
   "statusLine": {
     "type": "command",
@@ -11,5 +11,6 @@
     "language-go@adlawson-claude-plugins": true
   },
   "effortLevel": "medium",
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "theme": "light"
 }
